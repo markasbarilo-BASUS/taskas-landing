@@ -6,7 +6,7 @@
   <title>Taškas. — Svetainių Kūrimo Studija, Lietuva</title>
 
   <!-- SEO & Social -->
-  <meta name="description" content="Taškas. — svetainių kūrimo studija Lietuvoje. Greitas pristatymas, fiksuota kaina, individualus dizainas. El. parduotuvės, SEO, AI integracija. Nuo €499.">
+  <meta name="description" content="Taškas. — svetainių kūrimo studija Lietuvoje. Profesionalios svetainės nuo €299 arba nuo €99/mėn su priežiūra. Pristatymas per 2 savaites. 30 dienų garantija.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://taškas.lt">
 
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://taškas.lt">
   <meta property="og:title" content="Taškas. — Svetainių Kūrimo Studija, Lietuva">
-  <meta property="og:description" content="Greitas, gražus, konversijomis orientuotas svetainių kūrimas Lietuvos verslams. Individualus dizainas nuo €499.">
+  <meta property="og:description" content="Profesionalios svetainės Lietuvos verslams nuo €299 arba €99/mėn. Pristatymas per 2 savaites. 30 dienų pinigų grąžinimo garantija.">
   <meta property="og:image" content="https://taškas.lt/og-image.jpg">
   <meta property="og:locale" content="lt_LT">
   <meta property="og:site_name" content="Taškas.">
@@ -22,7 +22,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Taškas. — Svetainių Kūrimo Studija">
-  <meta name="twitter:description" content="Greitas, gražus, konversijomis orientuotas svetainių kūrimas Lietuvos verslams. Nuo €499.">
+  <meta name="twitter:description" content="Profesionalios svetainės Lietuvos verslams nuo €299 arba €99/mėn. Pristatymas per 2 savaites. 30 dienų garantija.">
   <meta name="twitter:image" content="https://taškas.lt/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -590,6 +590,14 @@
       .process-steps { grid-template-columns: 1fr; }
       body { cursor: auto; }
       #cursor, #cursor-ring { display: none; }
+      .urgency-bar { font-size: 0.72rem; padding: 0.5rem 1rem; }
+      .pricing-tabs { flex-direction: column; }
+      .pricing-tab { padding: 0.7rem 1rem; }
+      .pricing-toggle { flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+      .pricing-addon { flex-direction: column; text-align: center; gap: 1rem; }
+      .pricing-addon-left { flex-direction: column; text-align: center; }
+      .hero h1 { letter-spacing: -1.5px; }
+      .guarantee-badge { font-size: 0.7rem; padding: 0.4rem 0.9rem; }
     }
 
     /* ── FADE IN ON SCROLL ── */
@@ -768,11 +776,15 @@
     }
 
     @media (max-width: 640px) {
-      #social-proof { left: 12px; right: 12px; max-width: none; bottom: 80px; }
-      #sticky-cta { gap: 0.75rem; padding: 0.65rem 1rem; }
-      .sticky-text { font-size: 0.75rem; }
-      .exit-inner { margin: 8vh 1rem; padding: 2rem 1.5rem; }
-      .hero-results { gap: 1.5rem; }
+      #social-proof { left: 10px; right: 10px; max-width: none; bottom: 70px; font-size: 0.85rem; }
+      #sticky-cta { gap: 0.5rem; padding: 0.55rem 0.75rem; flex-wrap: nowrap; }
+      #sticky-cta .btn-primary { padding: 0.5rem 1rem; font-size: 0.78rem; white-space: nowrap; }
+      .sticky-text { font-size: 0.7rem; }
+      .exit-inner { margin: 5vh 0.75rem; padding: 1.75rem 1.25rem; }
+      .exit-inner h2 { font-size: 1.5rem; }
+      .exit-discount { font-size: 2.5rem; }
+      .hero-results { gap: 1.2rem; }
+      .hero-result-num { font-size: 1.6rem; }
     }
   </style>
 </head>
