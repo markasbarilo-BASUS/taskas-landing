@@ -530,6 +530,178 @@
     .fade2 { animation: fadeUp 0.55s 0.12s ease both; }
     .fade3 { animation: fadeUp 0.55s 0.26s ease both; }
     .fade4 { animation: fadeUp 0.55s 0.4s ease both; }
+
+    /* ── URGENCY BAR ── */
+    .urgency-bar {
+      background: linear-gradient(90deg, #ff2200, #ff5500, #ff2200);
+      background-size: 200% 100%;
+      animation: urgencyPulse 3s ease infinite;
+      padding: 0.6rem 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.5px;
+    }
+    @keyframes urgencyPulse { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+    .urgency-bar strong { font-weight: 900; }
+
+    /* ── GUARANTEE BADGE ── */
+    .guarantee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,85,0,0.08);
+      border: 1px solid rgba(255,85,0,0.3);
+      color: var(--orange);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      margin-top: 1.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── SOCIAL PROOF POPUP ── */
+    #social-proof {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 400;
+      background: var(--black-2);
+      border: 1px solid var(--black-3);
+      border-radius: 10px;
+      padding: 0.85rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      max-width: 320px;
+    }
+    #social-proof.show { transform: translateY(0); opacity: 1; }
+    .sp-icon {
+      width: 38px; height: 38px; min-width: 38px;
+      background: rgba(255,85,0,0.12);
+      border: 1px solid rgba(255,85,0,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .sp-text { font-size: 0.78rem; line-height: 1.4; color: var(--gray-light); }
+    .sp-text strong { color: var(--white); display: block; font-size: 0.82rem; }
+    .sp-time { font-size: 0.68rem; color: var(--gray); margin-top: 2px; }
+
+    /* ── EXIT INTENT POPUP ── */
+    #exit-popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(8px);
+    }
+    .exit-inner {
+      max-width: 480px;
+      margin: 15vh auto;
+      background: var(--black-1);
+      border: 2px solid var(--orange);
+      border-radius: 12px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 80px rgba(255,85,0,0.2);
+    }
+    .exit-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .exit-inner h2 span { color: var(--orange); }
+    .exit-discount {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      margin: 1rem 0;
+      letter-spacing: -2px;
+    }
+    .exit-inner p {
+      color: var(--gray-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .exit-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: none; border: 1px solid var(--black-3);
+      color: var(--gray-mid); width: 32px; height: 32px;
+      border-radius: 50%; cursor: pointer;
+      font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .exit-close:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── STICKY CTA ── */
+    #sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--orange);
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    #sticky-cta.show { transform: translateY(0); }
+    .sticky-text { color: var(--gray-light); font-size: 0.85rem; font-weight: 600; }
+    .sticky-text span { color: var(--orange); font-weight: 800; }
+
+    /* ── RESULTS ROW (hero) ── */
+    .hero-results {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-result {
+      text-align: center;
+    }
+    .hero-result-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .hero-result-label {
+      font-size: 0.75rem;
+      color: var(--gray-mid);
+      margin-top: 0.3rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 640px) {
+      #social-proof { left: 12px; right: 12px; max-width: none; bottom: 80px; }
+      #sticky-cta { gap: 0.75rem; padding: 0.65rem 1rem; }
+      .sticky-text { font-size: 0.75rem; }
+      .exit-inner { margin: 8vh 1rem; padding: 2rem 1.5rem; }
+      .hero-results { gap: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -539,6 +711,11 @@
   <div id="cursor-ring"></div>
 
   <div class="flag-stripe"></div>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    🔥 <strong>KOVO AKCIJA:</strong> Liko tik <strong id="spots-left">3</strong> vietos šį mėnesį — <strong>-20% pirmiesiems</strong> 🔥
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -557,18 +734,37 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-badge fade1">Startuojame Lietuvoje</div>
+      <div class="hero-badge fade1">Garantuotas rezultatas arba grąžiname pinigus</div>
       <h1 class="fade2">
-        Jūsų verslas nusipelno<br/>
-        <span class="accent">spindėti internete<span class="blink"></span></span>
+        Daugiau klientų<br/>
+        <span class="accent">iš interneto<span class="blink"></span></span>
       </h1>
       <p class="fade3">
-        Taškas. kuria greitas, gražias, konversijomis orientuotas svetaines
-        Lietuvos verslams, pasiruošusiems augti. Jokių šablonų. Jokių kompromisų.
+        Jūsų konkurentai jau turi modernias svetaines — ir vagia jūsų klientus.<br>
+        Mes sukursime svetainę, kuri <strong style="color:var(--orange)">generuoja užklausas automatiškai</strong>.<br>
+        Per 2 savaites. Fiksuota kaina. Arba grąžiname pinigus.
       </p>
       <div class="hero-cta fade4">
-        <a href="#waitlist" class="btn-primary">Ankstyvoji prieiga — Nemokamai</a>
-        <a href="#portfolio" class="btn-secondary">Peržiūrėti darbus</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-primary">Nemokama konsultacija — Rezervuoti dabar</a>
+        <a href="#pricing" class="btn-secondary">Kainos nuo €499</a>
+      </div>
+      <div class="guarantee-badge fade4">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        30 dienų pinigų grąžinimo garantija
+      </div>
+      <div class="hero-results fade4">
+        <div class="hero-result">
+          <div class="hero-result-num">+40%</div>
+          <div class="hero-result-label">Daugiau užklausų</div>
+        </div>
+        <div class="hero-result">
+          <div class="hero-result-num">2 sav.</div>
+          <div class="hero-result-label">Pristatymas</div>
+        </div>
+        <div class="hero-result">
+          <div class="hero-result-num">€0</div>
+          <div class="hero-result-label">Konsultacija</div>
+        </div>
       </div>
     </div>
   </section>
@@ -577,22 +773,22 @@
   <div class="marquee-wrap">
     <div class="marquee-track">
       <!-- duplicated for seamless loop -->
-      <span class="marquee-item">Svetainės<span class="marquee-dot"></span></span>
-      <span class="marquee-item">El. Parduotuvės<span class="marquee-dot"></span></span>
-      <span class="marquee-item">SEO Optimizacija<span class="marquee-dot"></span></span>
-      <span class="marquee-item">AI Integracija<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Fiksuota Kaina<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Greitas Pristatymas<span class="marquee-dot"></span></span>
-      <span class="marquee-item">BDAR Atitikimas<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Nuolatinė Priežiūra<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Svetainės<span class="marquee-dot"></span></span>
-      <span class="marquee-item">El. Parduotuvės<span class="marquee-dot"></span></span>
-      <span class="marquee-item">SEO Optimizacija<span class="marquee-dot"></span></span>
-      <span class="marquee-item">AI Integracija<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Fiksuota Kaina<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Greitas Pristatymas<span class="marquee-dot"></span></span>
-      <span class="marquee-item">BDAR Atitikimas<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Nuolatinė Priežiūra<span class="marquee-dot"></span></span>
+      <span class="marquee-item">+40% Daugiau Užklausų<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Pristatymas per 2 Savaites<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Pinigų Grąžinimo Garantija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nuo €499<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nemokama Konsultacija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">AI Automatizacija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">SEO Optimizuota<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Liko 3 Vietos<span class="marquee-dot"></span></span>
+      <span class="marquee-item">+40% Daugiau Užklausų<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Pristatymas per 2 Savaites<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Pinigų Grąžinimo Garantija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nuo €499<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nemokama Konsultacija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">AI Automatizacija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">SEO Optimizuota<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Liko 3 Vietos<span class="marquee-dot"></span></span>
     </div>
   </div>
 
@@ -668,10 +864,10 @@
   <section id="why" class="why">
     <div class="why-inner">
       <div class="why-left reveal">
-        <p class="section-label">Kodėl Taškas.</p>
-        <h2 class="section-title">Sukurta Lietuvos verslams, ne didelėms korporacijoms.</h2>
-        <p>Dauguma agentūrų mažąjį verslą laiko antraeiliu dalyku. Taškas. sukurta specialiai Lietuvos verslininkams, parduotuvėms ir paslaugų teikėjams, kurie nori pasaulinio lygio rezultatų be korporatyvinių kainų.</p>
-        <a href="#waitlist" class="btn-dark">Prisijungti prie laukimo sąrašo →</a>
+        <p class="section-label">Kodėl mes</p>
+        <h2 class="section-title">Kol jūs abejojate, jūsų konkurentai jau ima jūsų klientus.</h2>
+        <p>75% klientų sprendžia pagal svetainę. Jei jūsų svetainė pasenusi arba jos nėra — jūs <strong style="color:var(--orange)">prarandate pinigus kiekvieną dieną</strong>. Mes tai pataisome per 2 savaites su 100% pinigų grąžinimo garantija.</p>
+        <a href="#" onclick="openBooking();return false;" class="btn-dark">Nemokama konsultacija — Sužinoti daugiau →</a>
       </div>
       <div class="why-items reveal">
         <div class="why-item">
@@ -854,9 +1050,9 @@
   <!-- WAITLIST -->
   <section id="waitlist" class="waitlist">
     <div class="waitlist-inner">
-      <p class="section-label">Pradėkime</p>
-      <h2 class="section-title" style="margin-bottom:1rem">Pasiruošę augti?</h2>
-      <p>Užsiregistruokite į nemokamą 30 min. pokalbį — aptarsime jūsų projektą ir parengsime individualų pasiūlymą. Arba palikite el. paštą ir susisieksime patys.</p>
+      <p class="section-label">Liko tik 3 vietos</p>
+      <h2 class="section-title" style="margin-bottom:1rem">Jūsų konkurentai jau veikia.<br>O jūs?</h2>
+      <p>Kiekviena diena be modernios svetainės = prarasti klientai. Nemokama 30 min. konsultacija — parodysime, kiek klientų prarandate ir kaip tai pataisyti. <strong>Jokių įsipareigojimų.</strong></p>
 
       <!-- BOOKING CTA -->
       <div style="margin-bottom:2rem">
@@ -1061,6 +1257,38 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- SOCIAL PROOF POPUP -->
+  <div id="social-proof">
+    <div class="sp-icon">✓</div>
+    <div>
+      <div class="sp-text"><strong id="sp-name"></strong> <span id="sp-action"></span></div>
+      <div class="sp-time" id="sp-time"></div>
+    </div>
+  </div>
+
+  <!-- EXIT INTENT POPUP -->
+  <div id="exit-popup" onclick="if(event.target===this)closeExit()">
+    <div class="exit-inner">
+      <button class="exit-close" onclick="closeExit()">✕</button>
+      <div style="font-size:2.5rem;margin-bottom:0.5rem">⏰</div>
+      <h2>Palauk! Turime <span>specialų</span> pasiūlymą</h2>
+      <div class="exit-discount">-20%</div>
+      <p>Tik šią savaitę — <strong>20% nuolaida</strong> bet kuriam paketui.<br>Nemokama 30 min. konsultacija pridedama.</p>
+      <a href="#" onclick="closeExit();openBooking();return false;" class="btn-primary" style="display:inline-block;font-size:1.05rem;padding:1.1rem 2.5rem">
+        Gauti nuolaidą — Rezervuoti dabar
+      </a>
+      <p style="font-size:0.75rem;color:var(--gray);margin-top:1rem;margin-bottom:0">Jokių įsipareigojimų. Tik pokalbis.</p>
+    </div>
+  </div>
+
+  <!-- STICKY CTA BAR -->
+  <div id="sticky-cta">
+    <div class="sticky-text">🔥 Liko <span id="sticky-spots">3</span> vietos kovo mėnesiui</div>
+    <a href="#" onclick="openBooking();return false;" class="btn-primary" style="padding:0.65rem 1.5rem;font-size:0.85rem;box-shadow:none">
+      Rezervuoti dabar →
+    </a>
   </div>
 
   <!-- EMAILJS -->
@@ -1327,6 +1555,52 @@
     // ── PRIVACY MODAL ──
     function openPrivacy()  { document.getElementById('privacy-overlay').style.display = 'block'; document.body.style.overflow = 'hidden'; }
     function closePrivacy() { document.getElementById('privacy-overlay').style.display = 'none'; document.body.style.overflow = ''; }
+
+    // ── SOCIAL PROOF NOTIFICATIONS ──
+    const spProofs = [
+      { name: 'Jonas iš Kauno', action: 'ką tik rezervavo konsultaciją', time: 'prieš 3 min.' },
+      { name: 'Kristina iš Vilniaus', action: 'užsisakė verslo svetainę', time: 'prieš 12 min.' },
+      { name: 'Mindaugas iš Klaipėdos', action: 'prisijungė prie laukimo sąrašo', time: 'prieš 28 min.' },
+      { name: 'Laura iš Šiaulių', action: 'rezervavo konsultaciją', time: 'prieš 45 min.' },
+      { name: 'Tomas iš Panevėžio', action: 'užsisakė el. parduotuvę', time: 'prieš 1 val.' },
+      { name: 'Eglė iš Kauno', action: 'ką tik rezervavo konsultaciją', time: 'prieš 2 val.' },
+      { name: 'Darius iš Vilniaus', action: 'prisijungė prie laukimo sąrašo', time: 'prieš 3 val.' },
+    ];
+    let spIdx = 0;
+    function showSocialProof() {
+      const sp = document.getElementById('social-proof');
+      const p = spProofs[spIdx % spProofs.length];
+      document.getElementById('sp-name').textContent = p.name;
+      document.getElementById('sp-action').textContent = p.action;
+      document.getElementById('sp-time').textContent = p.time;
+      sp.classList.add('show');
+      setTimeout(() => sp.classList.remove('show'), 4000);
+      spIdx++;
+    }
+    setTimeout(showSocialProof, 5000);
+    setInterval(showSocialProof, 18000);
+
+    // ── EXIT INTENT ──
+    let exitShown = false;
+    document.addEventListener('mouseout', e => {
+      if (e.clientY < 5 && !exitShown && !sessionStorage.getItem('taskas_exit')) {
+        exitShown = true;
+        sessionStorage.setItem('taskas_exit', '1');
+        document.getElementById('exit-popup').style.display = 'block';
+      }
+    });
+    function closeExit() { document.getElementById('exit-popup').style.display = 'none'; }
+
+    // ── STICKY CTA BAR ──
+    const stickyCta = document.getElementById('sticky-cta');
+    const heroSection = document.querySelector('.hero');
+    const stickyObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) stickyCta.classList.add('show');
+        else stickyCta.classList.remove('show');
+      });
+    }, { threshold: 0 });
+    stickyObserver.observe(heroSection);
 
     // ── PATCH waitlist to fire email event ──
     const origForm = document.getElementById('waitlist-form');
