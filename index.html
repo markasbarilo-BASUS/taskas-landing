@@ -747,7 +747,7 @@
 
   <!-- URGENCY BAR -->
   <div class="urgency-bar">
-    🔥 <strong>KOVO AKCIJA:</strong> Liko tik <strong id="spots-left">3</strong> vietos šį mėnesį — <strong>-20% pirmiesiems</strong> 🔥
+    🔥 <strong>KOVO AKCIJA:</strong> Liko tik <strong id="spots-left">3</strong> vietos šį mėnesį — <strong>2 mėnesiai nemokamai su metiniu planu</strong> 🔥
   </div>
 
   <!-- NAV -->
@@ -779,7 +779,7 @@
       </p>
       <div class="hero-cta fade4">
         <a href="#" onclick="openBooking();return false;" class="btn-primary">Nemokama konsultacija — Rezervuoti dabar</a>
-        <a href="#pricing" class="btn-secondary">Kainos nuo €499</a>
+        <a href="#pricing" class="btn-secondary">Nuo €199/mėn — viskas įskaičiuota</a>
       </div>
       <div class="guarantee-badge fade4">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -809,7 +809,7 @@
       <span class="marquee-item">+40% Daugiau Užklausų<span class="marquee-dot"></span></span>
       <span class="marquee-item">Pristatymas per 2 Savaites<span class="marquee-dot"></span></span>
       <span class="marquee-item">Pinigų Grąžinimo Garantija<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Nuo €499<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nuo €199/mėn<span class="marquee-dot"></span></span>
       <span class="marquee-item">Nemokama Konsultacija<span class="marquee-dot"></span></span>
       <span class="marquee-item">AI Automatizacija<span class="marquee-dot"></span></span>
       <span class="marquee-item">SEO Optimizuota<span class="marquee-dot"></span></span>
@@ -817,7 +817,7 @@
       <span class="marquee-item">+40% Daugiau Užklausų<span class="marquee-dot"></span></span>
       <span class="marquee-item">Pristatymas per 2 Savaites<span class="marquee-dot"></span></span>
       <span class="marquee-item">Pinigų Grąžinimo Garantija<span class="marquee-dot"></span></span>
-      <span class="marquee-item">Nuo €499<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nuo €199/mėn<span class="marquee-dot"></span></span>
       <span class="marquee-item">Nemokama Konsultacija<span class="marquee-dot"></span></span>
       <span class="marquee-item">AI Automatizacija<span class="marquee-dot"></span></span>
       <span class="marquee-item">SEO Optimizuota<span class="marquee-dot"></span></span>
@@ -956,21 +956,21 @@
   <!-- PRICING -->
   <section id="pricing" class="pricing">
     <div class="hdr reveal">
-      <p class="section-label">Skaidrios kainos</p>
-      <h2 class="section-title" style="color:var(--white)">Viena kaina. Viskas įskaičiuota.</h2>
+      <p class="section-label">Viena kaina — jokių siurprizų</p>
+      <h2 class="section-title" style="color:var(--white)">Viskas įskaičiuota. Visada.</h2>
       <p style="color:var(--gray-mid);font-size:0.95rem;max-width:560px;margin:1rem auto 0;line-height:1.7">
-        Jokių paslėptų mokesčių. Dizainas, kūrimas, talpinimas, priežiūra, atnaujinimai — <strong style="color:var(--white)">viskas viename plane</strong>.
+        Dizainas, kūrimas, talpinimas, priežiūra, atnaujinimai, palaikymas — <strong style="color:var(--white)">viena kaina, jokių papildomų mokesčių</strong>. Minimali sutartis 12 mėn.
       </p>
     </div>
 
-    <!-- Toggle: Monthly / Annual -->
+    <!-- Toggle: Monthly / Annual prepay -->
     <div class="pricing-toggle reveal">
-      <span id="tog-m" class="active">Mėnesinis</span>
+      <span id="tog-m" class="active">Kas mėnesį</span>
       <div class="toggle-switch" id="pricing-switch" onclick="togglePricing()">
         <div class="toggle-knob"></div>
       </div>
-      <span id="tog-y">Metinis</span>
-      <span class="save-badge">-20%</span>
+      <span id="tog-y">Metinis (iš karto)</span>
+      <span class="save-badge">2 mėn. nemokamai</span>
     </div>
 
     <div class="pricing-grid">
@@ -980,9 +980,8 @@
         <p class="pricing-tier">Pradinis</p>
         <h3 class="pricing-name">Starter</h3>
         <p class="pricing-desc">Profesionali svetainė smulkiam verslui — vizitinė kortelė internete, kuri dirba už jus 24/7.</p>
-        <div class="pricing-price" data-monthly="149" data-annual="119"><sup>€</sup><span class="price-val">149</span></div>
-        <p class="pricing-from price-period">per mėnesį</p>
-        <p class="pricing-setup">€499 įdiegimas — <span>€0 su metiniu planu</span></p>
+        <div class="pricing-price" data-monthly="199" data-annual="1990"><sup>€</sup><span class="price-val">199</span></div>
+        <p class="pricing-from price-period">per mėnesį · min. 12 mėn.</p>
         <ul class="pricing-features">
           <li>Iki 5 puslapių individualus dizainas</li>
           <li>Mobilusis pirmas + greitis</li>
@@ -995,18 +994,17 @@
           <li class="muted">Blogas / naujienos</li>
           <li class="muted">AI konsultantas</li>
         </ul>
-        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti nemokamą konsultaciją</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Nemokama konsultacija →</a>
       </div>
 
-      <!-- PRO (featured) -->
+      <!-- GROWTH (featured) -->
       <div class="pricing-card featured reveal">
         <div class="pricing-popular">Populiariausias</div>
         <p class="pricing-tier">Verslo</p>
         <h3 class="pricing-name">Growth</h3>
         <p class="pricing-desc">Visavertė verslo svetainė su pažangiu SEO, analitika ir konversijų optimizavimu. Augimo variklis.</p>
-        <div class="pricing-price" data-monthly="299" data-annual="239"><sup>€</sup><span class="price-val">299</span></div>
-        <p class="pricing-from price-period">per mėnesį</p>
-        <p class="pricing-setup">€999 įdiegimas — <span>€0 su metiniu planu</span></p>
+        <div class="pricing-price" data-monthly="349" data-annual="3490"><sup>€</sup><span class="price-val">349</span></div>
+        <p class="pricing-from price-period">per mėnesį · min. 12 mėn.</p>
         <ul class="pricing-features">
           <li>Iki 15 puslapių individualus dizainas</li>
           <li>Mobilusis pirmas + greitis A+</li>
@@ -1019,7 +1017,7 @@
           <li>A/B testavimas</li>
           <li>Pristatymas per 2-3 savaites</li>
         </ul>
-        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti nemokamą konsultaciją</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Nemokama konsultacija →</a>
       </div>
 
       <!-- SCALE -->
@@ -1027,9 +1025,8 @@
         <p class="pricing-tier">Premium</p>
         <h3 class="pricing-name">Scale</h3>
         <p class="pricing-desc">El. parduotuvė arba kompleksinė svetainė su AI, automatizacija ir prioritetiniu palaikymu.</p>
-        <div class="pricing-price" data-monthly="499" data-annual="399"><sup>€</sup><span class="price-val">499</span></div>
-        <p class="pricing-from price-period">per mėnesį</p>
-        <p class="pricing-setup">€1999 įdiegimas — <span>€0 su metiniu planu</span></p>
+        <div class="pricing-price" data-monthly="549" data-annual="5490"><sup>€</sup><span class="price-val">549</span></div>
+        <p class="pricing-from price-period">per mėnesį · min. 12 mėn.</p>
         <ul class="pricing-features">
           <li>Neriboti puslapiai / produktai</li>
           <li>El. parduotuvė + mokėjimai</li>
@@ -1042,7 +1039,7 @@
           <li>Mėnesinis strateginis skambutis</li>
           <li>Pristatymas per 3-4 savaites</li>
         </ul>
-        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti nemokamą konsultaciją</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Nemokama konsultacija →</a>
       </div>
 
     </div>
@@ -1065,7 +1062,7 @@
         <span class="addon-badge" style="background:var(--orange);color:#000;border-color:var(--orange)">Matematika</span>
         <div>
           <h4>1 naujas klientas per mėnesį padengia investiciją</h4>
-          <p>Jei jūsų paslaugos kaina ≥€299 — svetainė atsiperka nuo pirmo naujo kliento. Visa kita — pelnas.</p>
+          <p>Jei jūsų paslaugos kaina ≥€349 — svetainė atsiperka nuo pirmo naujo kliento. Visa kita — pelnas.</p>
         </div>
       </div>
       <div class="addon-price" style="color:#22c55e">+ROI</div>
@@ -1339,10 +1336,11 @@
       <button class="exit-close" onclick="closeExit()">✕</button>
       <div style="font-size:2.5rem;margin-bottom:0.5rem">⏰</div>
       <h2>Palauk! Turime <span>specialų</span> pasiūlymą</h2>
-      <div class="exit-discount">-20%</div>
-      <p>Tik šią savaitę — <strong>20% nuolaida</strong> bet kuriam paketui.<br>Nemokama 30 min. konsultacija pridedama.</p>
+      <div class="exit-discount">2 mėn.</div>
+      <p style="font-size:1.1rem;font-weight:700;color:var(--orange);margin-bottom:0.5rem">NEMOKAMAI</p>
+      <p>Pasirinkite metinį planą ir gaukite <strong>2 mėnesius nemokamai</strong>.<br>Nemokama 30 min. konsultacija pridedama.</p>
       <a href="#" onclick="closeExit();openBooking();return false;" class="btn-primary" style="display:inline-block;font-size:1.05rem;padding:1.1rem 2.5rem">
-        Gauti nuolaidą — Rezervuoti dabar
+        Rezervuoti nemokamą konsultaciją
       </a>
       <p style="font-size:0.75rem;color:var(--gray);margin-top:1rem;margin-bottom:0">Jokių įsipareigojimų. Tik pokalbis.</p>
     </div>
@@ -1634,18 +1632,9 @@
         el.textContent = isAnnual ? card.dataset.annual : card.dataset.monthly;
       });
       document.querySelectorAll('.price-period').forEach(el => {
-        el.textContent = isAnnual ? 'per mėnesį (mokama metiškai)' : 'per mėnesį';
-      });
-      document.querySelectorAll('.pricing-setup').forEach(el => {
-        if (isAnnual) {
-          el.innerHTML = '<span style="color:#22c55e;font-weight:800;text-decoration:none">€0 įdiegimas — nemokamas su metiniu planu ✓</span>';
-          el.style.textDecoration = 'none';
-        } else {
-          const prices = ['€499','€999','€1999'];
-          const idx = [...document.querySelectorAll('.pricing-setup')].indexOf(el);
-          el.innerHTML = prices[idx] + ' įdiegimas — <span>€0 su metiniu planu</span>';
-          el.style.textDecoration = 'line-through';
-        }
+        el.textContent = isAnnual
+          ? 'per metus · mokėkite 10, gaukite 12 mėn.'
+          : 'per mėnesį · min. 12 mėn.';
       });
     }
 
