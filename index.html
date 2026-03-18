@@ -429,6 +429,39 @@
     .pricing-addon h4 { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.2rem; }
     .pricing-addon p { font-size: 0.83rem; color: var(--gray-mid); }
     .addon-price { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--orange); letter-spacing: -1px; white-space: nowrap; }
+    .pricing-toggle {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .pricing-toggle span { font-size: 0.88rem; font-weight: 600; color: var(--gray-mid); transition: color 0.2s; }
+    .pricing-toggle span.active { color: var(--white); }
+    .toggle-switch {
+      width: 52px; height: 28px;
+      background: var(--black-3); border-radius: 14px;
+      position: relative; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle-switch.annual { background: var(--orange); }
+    .toggle-knob {
+      width: 22px; height: 22px;
+      background: var(--white);
+      border-radius: 50%;
+      position: absolute;
+      top: 3px; left: 3px;
+      transition: left 0.2s;
+    }
+    .toggle-switch.annual .toggle-knob { left: 27px; }
+    .save-badge {
+      background: rgba(255,85,0,0.15);
+      color: var(--orange);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .pricing-setup { font-size: 0.82rem; color: var(--gray); margin-bottom: 1.5rem; text-decoration: line-through; }
+    .pricing-setup span { color: var(--orange); text-decoration: none; font-weight: 700; display: inline; }
     @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } .pricing-card.featured { border: 1px solid var(--orange); } }
 
     /* ── COOKIE BANNER ── */
@@ -795,10 +828,10 @@
   <!-- STRIP -->
   <div class="strip">
     <div class="strip-inner">
-      <div class="strip-item"><b>€</b> Skaidrios kainos</div>
-      <div class="strip-item"><b>⚡</b> Pristatymas per 2–4 savaites</div>
-      <div class="strip-item"><b>🇱🇹</b> Įsikūrę Lietuvoje</div>
-      <div class="strip-item"><b>🔒</b> BDAR atitikimas pagal nutylėjimą</div>
+      <div class="strip-item"><b>€</b> Viskas viename plane — jokių papildomų mokesčių</div>
+      <div class="strip-item"><b>⚡</b> Paruošta per 2 savaites</div>
+      <div class="strip-item"><b>🇱🇹</b> Lietuviškas palaikymas</div>
+      <div class="strip-item"><b>🔄</b> Atšaukite bet kada</div>
     </div>
   </div>
 
@@ -806,33 +839,33 @@
   <section id="services" class="services">
     <div style="max-width:1200px;margin:0 auto">
       <div class="hdr reveal">
-        <p class="section-label">Ką mes kuriame</p>
-        <h2 class="section-title" style="color:var(--white)">Paslaugos</h2>
+        <p class="section-label">Ką gausite kiekvieną mėnesį</p>
+        <h2 class="section-title" style="color:var(--white)">Ne tik svetainė — augimo sistema</h2>
       </div>
       <div class="cards-grid">
         <div class="card reveal">
           <div class="card-num">01</div>
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
-          <h3>Individualus dizainas</h3>
-          <p>Unikalus, prekės ženklui pritaikytas dizainas, sukurtas nuo nulio. Jokio Wix, jokių šablonų — tik meistriškumas.</p>
+          <h3>Dizainas + nuolatiniai atnaujinimai</h3>
+          <p>Unikalus dizainas sukurtas nuo nulio. Kiekvieną mėnesį atnaujiname turinį, nuotraukas ir pasiūlymus — jums nereikia nieko daryti.</p>
         </div>
         <div class="card reveal">
           <div class="card-num">02</div>
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
-          <h3>El. parduotuvės</h3>
-          <p>Parduokite visoje Lietuvoje ir Europoje. Greitos, saugios parduotuvės su mokėjimo integracijomis, kuriomis pasitikite.</p>
+          <h3>Talpinimas + priežiūra</h3>
+          <p>Greitas serveris, SSL, atsarginės kopijos, saugumo atnaujinimai — viskas įskaičiuota. Jūs nesirūpinate techniniais dalykais.</p>
         </div>
         <div class="card reveal">
           <div class="card-num">03</div>
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
-          <h3>SEO ir našumas</h3>
-          <p>Sukurta aukštoms pozicijoms. Kiekviena svetainė kraunasi per mažiau nei 2 sekundes ir įvertinama 90+ Lighthouse.</p>
+          <h3>SEO + Google pozicijos</h3>
+          <p>Optimizuojame kiekvieną mėnesį. Jūsų svetainė kyla Google paieškoje — daugiau klientų jus randa patys.</p>
         </div>
         <div class="card reveal">
           <div class="card-num">04</div>
           <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg></div>
-          <h3>AI integracija</h3>
-          <p>Automatizuotas AI konsultantas, kuris atsako klientams 24/7, renka užklausas ir mažina jūsų darbo krūvį.</p>
+          <h3>Ataskaitos + analitika</h3>
+          <p>Kiekvieną mėnesį gaunate ataskaitą: kiek lankytojų, iš kur ateina, kas veikia, ką keisti. Sprendimai pagrįsti duomenimis.</p>
         </div>
       </div>
     </div>
@@ -842,20 +875,20 @@
   <div class="stats">
     <div class="stats-grid">
       <div class="stat reveal">
-        <div class="stat-num" data-target="3">0</div>
-        <div class="stat-label">Baigti projektai</div>
+        <div class="stat-num" data-target="40">0</div>
+        <div class="stat-label" data-suffix="%">% daugiau užklausų</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">2–4</div>
-        <div class="stat-label">Sav. pristatymas</div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Sav. iki paleidimo</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num" data-target="90">0</div>
-        <div class="stat-label">Lighthouse balas</div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Palaikymas + priežiūra</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Nuosavybė jums</div>
+        <div class="stat-num">€0</div>
+        <div class="stat-label">Rizikos — pinigų grąžinimo garantija</div>
       </div>
     </div>
   </div>
@@ -924,86 +957,118 @@
   <section id="pricing" class="pricing">
     <div class="hdr reveal">
       <p class="section-label">Skaidrios kainos</p>
-      <h2 class="section-title" style="color:var(--white)">Kainos</h2>
+      <h2 class="section-title" style="color:var(--white)">Viena kaina. Viskas įskaičiuota.</h2>
+      <p style="color:var(--gray-mid);font-size:0.95rem;max-width:560px;margin:1rem auto 0;line-height:1.7">
+        Jokių paslėptų mokesčių. Dizainas, kūrimas, talpinimas, priežiūra, atnaujinimai — <strong style="color:var(--white)">viskas viename plane</strong>.
+      </p>
     </div>
+
+    <!-- Toggle: Monthly / Annual -->
+    <div class="pricing-toggle reveal">
+      <span id="tog-m" class="active">Mėnesinis</span>
+      <div class="toggle-switch" id="pricing-switch" onclick="togglePricing()">
+        <div class="toggle-knob"></div>
+      </div>
+      <span id="tog-y">Metinis</span>
+      <span class="save-badge">-20%</span>
+    </div>
+
     <div class="pricing-grid">
 
       <!-- STARTER -->
       <div class="pricing-card reveal">
         <p class="pricing-tier">Pradinis</p>
         <h3 class="pricing-name">Starter</h3>
-        <p class="pricing-desc">Greitas, elegantiškas interneto vizitinės kortelės sprendimas smulkiam verslui.</p>
-        <div class="pricing-price"><sup>€</sup>499</div>
-        <p class="pricing-from">Vienkartinis mokėjimas</p>
+        <p class="pricing-desc">Profesionali svetainė smulkiam verslui — vizitinė kortelė internete, kuri dirba už jus 24/7.</p>
+        <div class="pricing-price" data-monthly="149" data-annual="119"><sup>€</sup><span class="price-val">149</span></div>
+        <p class="pricing-from price-period">per mėnesį</p>
+        <p class="pricing-setup">€499 įdiegimas — <span>€0 su metiniu planu</span></p>
         <ul class="pricing-features">
-          <li>Iki 5 puslapių</li>
-          <li>Individualus dizainas</li>
-          <li>Mobilusis pirmas</li>
-          <li>Bazinis SEO</li>
-          <li>Kontaktų forma</li>
-          <li>SSL sertifikatas</li>
-          <li>2 savaičių pristatymas</li>
+          <li>Iki 5 puslapių individualus dizainas</li>
+          <li>Mobilusis pirmas + greitis</li>
+          <li>SEO bazė (Google paieška)</li>
+          <li>SSL + talpinimas įskaičiuota</li>
+          <li>Kontaktų forma + el. pranešimai</li>
+          <li>2 turinio pakeitimai/mėn</li>
+          <li>Mėnesinis veikimo ataskaita</li>
+          <li>Pristatymas per 2 savaites</li>
           <li class="muted">Blogas / naujienos</li>
-          <li class="muted">AI integracija</li>
+          <li class="muted">AI konsultantas</li>
         </ul>
-        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti pokalbį</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti nemokamą konsultaciją</a>
       </div>
 
       <!-- PRO (featured) -->
       <div class="pricing-card featured reveal">
         <div class="pricing-popular">Populiariausias</div>
         <p class="pricing-tier">Verslo</p>
-        <h3 class="pricing-name">Pro</h3>
-        <p class="pricing-desc">Visavertė verslo svetainė su pažangiu SEO ir konversijų optimizavimu.</p>
-        <div class="pricing-price"><sup>€</sup>999</div>
-        <p class="pricing-from">Vienkartinis mokėjimas</p>
+        <h3 class="pricing-name">Growth</h3>
+        <p class="pricing-desc">Visavertė verslo svetainė su pažangiu SEO, analitika ir konversijų optimizavimu. Augimo variklis.</p>
+        <div class="pricing-price" data-monthly="299" data-annual="239"><sup>€</sup><span class="price-val">299</span></div>
+        <p class="pricing-from price-period">per mėnesį</p>
+        <p class="pricing-setup">€999 įdiegimas — <span>€0 su metiniu planu</span></p>
         <ul class="pricing-features">
-          <li>Iki 10 puslapių</li>
-          <li>Individualus dizainas</li>
-          <li>Mobilusis pirmas</li>
-          <li>Pažangus SEO</li>
-          <li>Blogas / naujienos</li>
-          <li>Google Analytics</li>
-          <li>3 pataisymo raundai</li>
-          <li>3 savaičių pristatymas</li>
-          <li class="muted">AI integracija</li>
+          <li>Iki 15 puslapių individualus dizainas</li>
+          <li>Mobilusis pirmas + greitis A+</li>
+          <li>Pažangus SEO + Google My Business</li>
+          <li>SSL + greitas talpinimas (CDN)</li>
+          <li>Blogas / naujienos sistema</li>
+          <li>Google Analytics + konversijų sekimas</li>
+          <li>5 turinio pakeitimai/mėn</li>
+          <li>Savaitinė veikimo ataskaita</li>
+          <li>A/B testavimas</li>
+          <li>Pristatymas per 2-3 savaites</li>
         </ul>
-        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti pokalbį</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti nemokamą konsultaciją</a>
       </div>
 
-      <!-- STORE -->
+      <!-- SCALE -->
       <div class="pricing-card reveal">
-        <p class="pricing-tier">El. prekyba</p>
-        <h3 class="pricing-name">Parduotuvė</h3>
-        <p class="pricing-desc">Pilna el. parduotuvė su mokėjimais, inventoriumi ir automatizavimu.</p>
-        <div class="pricing-price"><sup>€</sup>1999</div>
-        <p class="pricing-from">Nuo — priklauso nuo apimties</p>
+        <p class="pricing-tier">Premium</p>
+        <h3 class="pricing-name">Scale</h3>
+        <p class="pricing-desc">El. parduotuvė arba kompleksinė svetainė su AI, automatizacija ir prioritetiniu palaikymu.</p>
+        <div class="pricing-price" data-monthly="499" data-annual="399"><sup>€</sup><span class="price-val">499</span></div>
+        <p class="pricing-from price-period">per mėnesį</p>
+        <p class="pricing-setup">€1999 įdiegimas — <span>€0 su metiniu planu</span></p>
         <ul class="pricing-features">
-          <li>Neriboti produktai</li>
-          <li>Mokėjimo integracija</li>
-          <li>Inventoriaus valdymas</li>
-          <li>Užsakymų sistema</li>
-          <li>Pažangus SEO</li>
-          <li>Greičio optimizacija</li>
-          <li>4 savaičių pristatymas</li>
-          <li>3 mėn. palaikymas</li>
-          <li class="muted">AI integracija</li>
+          <li>Neriboti puslapiai / produktai</li>
+          <li>El. parduotuvė + mokėjimai</li>
+          <li>AI konsultantas 24/7</li>
+          <li>Inventoriaus + užsakymų sistema</li>
+          <li>Pažangus SEO + schema markup</li>
+          <li>CDN + enterprise greitis</li>
+          <li>Neriboti turinio pakeitimai</li>
+          <li>Prioritetinis palaikymas (24h)</li>
+          <li>Mėnesinis strateginis skambutis</li>
+          <li>Pristatymas per 3-4 savaites</li>
         </ul>
-        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti pokalbį</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti nemokamą konsultaciją</a>
       </div>
 
     </div>
 
-    <!-- AI ADD-ON -->
+    <!-- GUARANTEE BAR -->
     <div class="pricing-addon reveal">
       <div class="pricing-addon-left">
-        <span class="addon-badge">✦ Priedas</span>
+        <span class="addon-badge">✦ Garantija</span>
         <div>
-          <h4>AI Konsultantas</h4>
-          <p>Automatizuotas AI, kuris atsako klientams 24/7, renka užklausas ir mažina jūsų darbo krūvį. Pridedamas prie bet kurio paketo.</p>
+          <h4>30 dienų pinigų grąžinimo garantija</h4>
+          <p>Jei per 30 dienų nesate patenkinti — grąžiname visus pinigus. Be klausimų. Jūs nieko nerizikuojate.</p>
         </div>
       </div>
-      <div class="addon-price">+€299</div>
+      <div class="addon-price" style="font-size:1.2rem;letter-spacing:0">0 rizikos</div>
+    </div>
+
+    <!-- ROI CALCULATOR -->
+    <div class="pricing-addon reveal" style="margin-top:1rem;border-color:var(--orange)">
+      <div class="pricing-addon-left">
+        <span class="addon-badge" style="background:var(--orange);color:#000;border-color:var(--orange)">Matematika</span>
+        <div>
+          <h4>1 naujas klientas per mėnesį padengia investiciją</h4>
+          <p>Jei jūsų paslaugos kaina ≥€299 — svetainė atsiperka nuo pirmo naujo kliento. Visa kita — pelnas.</p>
+        </div>
+      </div>
+      <div class="addon-price" style="color:#22c55e">+ROI</div>
     </div>
   </section>
 
@@ -1555,6 +1620,34 @@
     // ── PRIVACY MODAL ──
     function openPrivacy()  { document.getElementById('privacy-overlay').style.display = 'block'; document.body.style.overflow = 'hidden'; }
     function closePrivacy() { document.getElementById('privacy-overlay').style.display = 'none'; document.body.style.overflow = ''; }
+
+    // ── PRICING TOGGLE ──
+    let isAnnual = false;
+    function togglePricing() {
+      isAnnual = !isAnnual;
+      const sw = document.getElementById('pricing-switch');
+      sw.classList.toggle('annual', isAnnual);
+      document.getElementById('tog-m').classList.toggle('active', !isAnnual);
+      document.getElementById('tog-y').classList.toggle('active', isAnnual);
+      document.querySelectorAll('.price-val').forEach(el => {
+        const card = el.closest('.pricing-price');
+        el.textContent = isAnnual ? card.dataset.annual : card.dataset.monthly;
+      });
+      document.querySelectorAll('.price-period').forEach(el => {
+        el.textContent = isAnnual ? 'per mėnesį (mokama metiškai)' : 'per mėnesį';
+      });
+      document.querySelectorAll('.pricing-setup').forEach(el => {
+        if (isAnnual) {
+          el.innerHTML = '<span style="color:#22c55e;font-weight:800;text-decoration:none">€0 įdiegimas — nemokamas su metiniu planu ✓</span>';
+          el.style.textDecoration = 'none';
+        } else {
+          const prices = ['€499','€999','€1999'];
+          const idx = [...document.querySelectorAll('.pricing-setup')].indexOf(el);
+          el.innerHTML = prices[idx] + ' įdiegimas — <span>€0 su metiniu planu</span>';
+          el.style.textDecoration = 'line-through';
+        }
+      });
+    }
 
     // ── SOCIAL PROOF NOTIFICATIONS ──
     const spProofs = [
