@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taškas. — Svetainių Kūrimo Studija, Lietuva</title>
+
+  <!-- SEO & Social -->
+  <meta name="description" content="Taškas. — svetainių kūrimo studija Lietuvoje. Greitas pristatymas, fiksuota kaina, individualus dizainas. El. parduotuvės, SEO, AI integracija. Nuo €499.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://taskas.lt">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://taskas.lt">
+  <meta property="og:title" content="Taškas. — Svetainių Kūrimo Studija, Lietuva">
+  <meta property="og:description" content="Greitas, gražus, konversijomis orientuotas svetainių kūrimas Lietuvos verslams. Individualus dizainas nuo €499.">
+  <meta property="og:image" content="https://taskas.lt/og-image.jpg">
+  <meta property="og:locale" content="lt_LT">
+  <meta property="og:site_name" content="Taškas.">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Taškas. — Svetainių Kūrimo Studija">
+  <meta name="twitter:description" content="Greitas, gražus, konversijomis orientuotas svetainių kūrimas Lietuvos verslams. Nuo €499.">
+  <meta name="twitter:image" content="https://taskas.lt/og-image.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:      #FF5500;
+      --orange-hot:  #FF7722;
+      --black:       #000000;
+      --black-1:     #0d0d0d;
+      --black-2:     #1a1a1a;
+      --black-3:     #262626;
+      --gray:        #404040;
+      --gray-mid:    #6b6b6b;
+      --gray-light:  #a0a0a0;
+      --white:       #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; cursor: none; }
+
+    /* ── CUSTOM CURSOR ── */
+    #cursor {
+      width: 10px; height: 10px;
+      background: var(--orange);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    }
+    #cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,85,0,0.5);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    }
+    body:not(:hover) #cursor,
+    body:not(:hover) #cursor-ring { opacity: 0; }
+    a:hover ~ #cursor, button:hover ~ #cursor { width: 16px; height: 16px; }
+
+    /* ── FLAG STRIPE ── */
+    .flag-stripe { height: 4px; background: linear-gradient(to right, #FDBA12 33.3%, #1A7244 33.3% 66.6%, #C1272D 66.6%); }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--black-3);
+      padding: 1rem 2rem;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 800;
+      color: var(--white); text-decoration: none; letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .btn-nav {
+      background: var(--orange); color: var(--black);
+      font-weight: 700; font-size: 0.85rem;
+      padding: 0.6rem 1.3rem; border-radius: 3px;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-nav:hover { background: var(--orange-hot); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black);
+      padding: 8rem 2rem 7rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    /* dot grid */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,85,0,0.18) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      pointer-events: none;
+    }
+    /* orange glow */
+    .hero::after {
+      content: '';
+      position: absolute; top: -10%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,85,0,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--orange); color: var(--orange);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 2px; margin-bottom: 2.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 8.5vw, 7rem);
+      font-weight: 800; line-height: 1.02; letter-spacing: -3px;
+      max-width: 950px; margin: 0 auto 1.5rem;
+    }
+    .hero h1 .accent { color: var(--orange); }
+    .hero h1 .blink {
+      display: inline-block; width: 4px; height: 0.85em;
+      background: var(--orange); margin-left: 4px; vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero p {
+      color: var(--gray-light); font-size: 1.1rem;
+      max-width: 540px; margin: 0 auto 3rem; line-height: 1.75;
+    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange); color: var(--black);
+      font-weight: 800; font-size: 1rem;
+      padding: 1rem 2.2rem; border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 0 40px rgba(255,85,0,0.4);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { background: var(--orange-hot); transform: translateY(-2px); box-shadow: 0 0 60px rgba(255,85,0,0.55); }
+    .btn-secondary {
+      border: 1px solid var(--gray); color: var(--gray-light);
+      font-weight: 600; font-size: 1rem;
+      padding: 1rem 2.2rem; border-radius: 3px;
+      text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--orange); overflow: hidden;
+      padding: 0.75rem 0; border-top: none;
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 1.5rem;
+      padding: 0 2.5rem;
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--black);
+    }
+    .marquee-dot { width: 5px; height: 5px; background: rgba(0,0,0,0.35); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--black-1);
+      border-bottom: 1px solid var(--black-3);
+      padding: 1rem 2rem;
+    }
+    .strip-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem;
+    }
+    .strip-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--gray-mid); }
+    .strip-item b { color: var(--orange); }
+
+    /* ── SECTION COMMONS ── */
+    .section-label { color: var(--orange); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--black-1); padding: 6rem 2rem; }
+    .services .hdr { text-align: center; margin-bottom: 3.5rem; }
+    .cards-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0; border: 1px solid var(--black-3);
+    }
+    .card {
+      background: var(--black); padding: 2.5rem 2rem;
+      border: 1px solid var(--black-3);
+      position: relative; overflow: hidden;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: var(--orange); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .card:hover { background: var(--black-2); border-color: var(--orange); }
+    .card:hover::after { transform: scaleX(1); }
+    .card-num {
+      font-size: 0.7rem; font-weight: 800; color: var(--orange);
+      letter-spacing: 0.1em; margin-bottom: 1.5rem; opacity: 0.7;
+    }
+    .card-icon { width: 44px; height: 44px; background: rgba(255,85,0,0.1); border: 1px solid rgba(255,85,0,0.25); border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+    .card-icon svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.65rem; }
+    .card p { font-size: 0.86rem; color: var(--gray-mid); line-height: 1.7; }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--black);
+      border-top: 1px solid var(--black-3);
+      border-bottom: 1px solid var(--black-3);
+      padding: 4rem 2rem;
+    }
+    .stats-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat {
+      text-align: center; padding: 2rem 1rem;
+      border-right: 1px solid var(--black-3);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; color: var(--orange);
+      line-height: 1; margin-bottom: 0.5rem;
+      letter-spacing: -2px;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--gray-mid); font-weight: 500; }
+
+    /* ── WHY ── */
+    .why { background: var(--black-1); padding: 6rem 2rem; }
+    .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .why-left h2 { margin-bottom: 1.5rem; }
+    .why-left p { color: var(--gray-light); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+    .btn-dark { display: inline-block; background: var(--white); color: var(--black); font-weight: 800; font-size: 0.95rem; padding: 1rem 2rem; border-radius: 3px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .btn-dark:hover { background: var(--orange); transform: translateY(-2px); }
+    .why-items { display: flex; flex-direction: column; gap: 1rem; }
+    .why-item { display: flex; gap: 1.2rem; align-items: flex-start; padding: 1.25rem 1.4rem; border: 1px solid var(--black-3); border-radius: 6px; background: var(--black); transition: border-color 0.2s; }
+    .why-item:hover { border-color: var(--orange); }
+    .why-check { width: 26px; height: 26px; min-width: 26px; background: rgba(255,85,0,0.1); border: 1px solid var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .why-check svg { width: 12px; height: 12px; stroke: var(--orange); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .why-item h4 { font-size: 0.93rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .why-item p { font-size: 0.83rem; color: var(--gray-mid); line-height: 1.6; }
+
+    /* ── PROCESS ── */
+    .process { background: var(--black); padding: 6rem 2rem; }
+    .process .hdr { text-align: center; margin-bottom: 4rem; }
+    .process-steps {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 2.1rem; left: calc(12.5% + 1rem); right: calc(12.5% + 1rem);
+      height: 1px; background: linear-gradient(to right, var(--orange), rgba(255,85,0,0.2));
+      z-index: 0;
+    }
+    .step { padding: 0 1.5rem; text-align: center; position: relative; z-index: 1; }
+    .step-num {
+      width: 44px; height: 44px;
+      background: var(--black); border: 1px solid var(--orange);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 0.75rem; font-weight: 800; color: var(--orange); letter-spacing: 0.05em;
+    }
+    .step h4 { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .step p { font-size: 0.82rem; color: var(--gray-mid); line-height: 1.65; }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 6rem 2rem; }
+    .portfolio .hdr { text-align: center; margin-bottom: 3.5rem; }
+    .portfolio-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .portfolio-card { border: 1px solid var(--black-3); border-radius: 6px; overflow: hidden; background: var(--black); transition: border-color 0.25s; }
+    .portfolio-card:hover { border-color: var(--orange); }
+    .dual-thumb { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--black-3); aspect-ratio: 16/9; overflow: hidden; }
+    .dual-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .portfolio-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: top; display: block; }
+    .portfolio-body { padding: 1.6rem 1.8rem 1.8rem; }
+    .portfolio-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.55rem; }
+    .portfolio-body h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .portfolio-body p { font-size: 0.87rem; color: var(--gray-light); line-height: 1.6; margin-bottom: 1.4rem; }
+    .feat-badge { display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(255,85,0,0.1); border: 1px solid rgba(255,85,0,0.35); color: var(--orange); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.22rem 0.55rem; border-radius: 2px; margin-left: 0.5rem; vertical-align: middle; }
+    .btn-portfolio { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--orange); color: var(--orange); font-size: 0.83rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: 3px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .btn-portfolio:hover { background: var(--orange); color: var(--black); }
+    .btn-portfolio svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── WAITLIST ── */
+    .waitlist { background: var(--black); border-top: 1px solid var(--black-3); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+    .waitlist::before {
+      content: '';
+      position: absolute; bottom: -20%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,85,0,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .waitlist-inner { max-width: 520px; margin: 0 auto; position: relative; z-index: 1; }
+    .waitlist h2 { margin-bottom: 1rem; }
+    .waitlist > .waitlist-inner > p { color: var(--gray-light); font-size: 1rem; line-height: 1.75; margin-bottom: 2.5rem; }
+    .waitlist strong { color: var(--orange); }
+    .form { text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--gray-light); }
+    .form-group input, .form-group select {
+      background: var(--black-2); border: 1px solid var(--black-3); color: var(--white);
+      padding: 0.85rem 1rem; border-radius: 3px; font-size: 0.93rem; font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-group input::placeholder { color: var(--gray); }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255,85,0,0.12); }
+    .btn-submit {
+      width: 100%; background: var(--orange); color: var(--black);
+      font-weight: 800; font-size: 1rem; padding: 1.05rem;
+      border: none; border-radius: 3px; cursor: none; font-family: inherit;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(255,85,0,0.3); margin-top: 0.4rem;
+    }
+    .btn-submit:hover { background: var(--orange-hot); transform: translateY(-2px); box-shadow: 0 0 50px rgba(255,85,0,0.45); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .error-msg { display: none; color: #ff7070; font-size: 0.83rem; text-align: center; margin-top: 0.7rem; }
+    .error-msg.show { display: block; }
+    .success-box { display: none; background: var(--black-2); border: 1px solid var(--orange); border-radius: 6px; padding: 3rem 2rem; text-align: center; }
+    .success-box.show { display: block; }
+    .success-icon { width: 60px; height: 60px; background: rgba(255,85,0,0.1); border: 1px solid var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .success-icon svg { width: 26px; height: 26px; stroke: var(--orange); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-box h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 800; margin-bottom: 0.65rem; }
+    .success-box p { color: var(--gray-light); font-size: 0.92rem; }
+    .form-note { color: var(--gray); font-size: 0.73rem; text-align: center; margin-top: 1.2rem; }
+
+    /* ── PRICING ── */
+    .pricing { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 6rem 2rem; }
+    .pricing .hdr { text-align: center; margin-bottom: 3.5rem; }
+    .pricing-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--black-3);
+      border: 1px solid var(--black-3);
+    }
+    .pricing-card {
+      background: var(--black);
+      padding: 2.5rem 2rem;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .pricing-card.featured {
+      background: var(--black-2);
+      border-left: 1px solid var(--orange);
+      border-right: 1px solid var(--orange);
+    }
+    .pricing-popular {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--orange); color: var(--black);
+      font-size: 0.67rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.25rem 0.85rem; border-radius: 0 0 4px 4px;
+    }
+    .pricing-tier { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; }
+    .pricing-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .pricing-desc { font-size: 0.84rem; color: var(--gray-mid); line-height: 1.6; margin-bottom: 2rem; }
+    .pricing-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 800; color: var(--white);
+      line-height: 1; margin-bottom: 0.3rem; letter-spacing: -2px;
+    }
+    .pricing-price sup { font-size: 1.2rem; vertical-align: super; letter-spacing: 0; font-family: 'Inter', sans-serif; font-weight: 700; }
+    .pricing-from { font-size: 0.75rem; color: var(--gray-mid); margin-bottom: 2rem; }
+    .pricing-features { list-style: none; flex: 1; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--gray-light); }
+    .pricing-features li::before { content: '✓'; color: var(--orange); font-weight: 800; font-size: 0.8rem; margin-top: 1px; flex-shrink: 0; }
+    .pricing-features li.muted { color: var(--gray); }
+    .pricing-features li.muted::before { color: var(--gray); content: '–'; }
+    .btn-pricing {
+      display: block; text-align: center;
+      border: 1px solid var(--orange); color: var(--orange);
+      font-weight: 700; font-size: 0.9rem;
+      padding: 0.85rem 1.5rem; border-radius: 3px;
+      text-decoration: none; transition: background 0.2s, color 0.2s;
+      cursor: none;
+    }
+    .btn-pricing:hover, .pricing-card.featured .btn-pricing { background: var(--orange); color: var(--black); }
+    .pricing-card.featured .btn-pricing:hover { background: var(--orange-hot); }
+    .pricing-addon {
+      max-width: 1200px; margin: 1.5rem auto 0;
+      border: 1px solid var(--black-3); border-radius: 4px;
+      background: var(--black);
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .pricing-addon-left { display: flex; align-items: center; gap: 1rem; }
+    .addon-badge { background: rgba(255,85,0,0.1); border: 1px solid rgba(255,85,0,0.3); color: var(--orange); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 3px; white-space: nowrap; }
+    .pricing-addon h4 { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .pricing-addon p { font-size: 0.83rem; color: var(--gray-mid); }
+    .addon-price { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--orange); letter-spacing: -1px; white-space: nowrap; }
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } .pricing-card.featured { border: 1px solid var(--orange); } }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.83rem; color: var(--gray); }
+    .footer-left { display: flex; align-items: center; gap: 0.75rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 800; color: var(--white); }
+    .footer-logo span { color: var(--orange); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat { border-bottom: 1px solid var(--black-3); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .process-steps::before { display: none; }
+      .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      body { cursor: auto; }
+      #cursor, #cursor-ring { display: none; }
+    }
+
+    /* ── FADE IN ON SCROLL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HERO ANIMS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    .fade1 { animation: fadeUp 0.55s ease both; }
+    .fade2 { animation: fadeUp 0.55s 0.12s ease both; }
+    .fade3 { animation: fadeUp 0.55s 0.26s ease both; }
+    .fade4 { animation: fadeUp 0.55s 0.4s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <div class="flag-stripe"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Taškas<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#services">Paslaugos</a></li>
+        <li><a href="#pricing">Kainos</a></li>
+        <li><a href="#portfolio">Darbai</a></li>
+        <li><a href="#waitlist">Registruotis</a></li>
+      </ul>
+      <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-nav">Nemokamas skambutis</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge fade1">Startuojame Lietuvoje</div>
+      <h1 class="fade2">
+        Jūsų verslas nusipelno<br/>
+        <span class="accent">spindėti internete<span class="blink"></span></span>
+      </h1>
+      <p class="fade3">
+        Taškas. kuria greitas, gražias, konversijomis orientuotas svetaines
+        Lietuvos verslams, pasiruošusiems augti. Jokių šablonų. Jokių kompromisų.
+      </p>
+      <div class="hero-cta fade4">
+        <a href="#waitlist" class="btn-primary">Ankstyvoji prieiga — Nemokamai</a>
+        <a href="#portfolio" class="btn-secondary">Peržiūrėti darbus</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- duplicated for seamless loop -->
+      <span class="marquee-item">Svetainės<span class="marquee-dot"></span></span>
+      <span class="marquee-item">El. Parduotuvės<span class="marquee-dot"></span></span>
+      <span class="marquee-item">SEO Optimizacija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">AI Integracija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fiksuota Kaina<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Greitas Pristatymas<span class="marquee-dot"></span></span>
+      <span class="marquee-item">BDAR Atitikimas<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nuolatinė Priežiūra<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Svetainės<span class="marquee-dot"></span></span>
+      <span class="marquee-item">El. Parduotuvės<span class="marquee-dot"></span></span>
+      <span class="marquee-item">SEO Optimizacija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">AI Integracija<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Fiksuota Kaina<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Greitas Pristatymas<span class="marquee-dot"></span></span>
+      <span class="marquee-item">BDAR Atitikimas<span class="marquee-dot"></span></span>
+      <span class="marquee-item">Nuolatinė Priežiūra<span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-inner">
+      <div class="strip-item"><b>€</b> Skaidrios kainos</div>
+      <div class="strip-item"><b>⚡</b> Pristatymas per 2–4 savaites</div>
+      <div class="strip-item"><b>🇱🇹</b> Įsikūrę Lietuvoje</div>
+      <div class="strip-item"><b>🔒</b> BDAR atitikimas pagal nutylėjimą</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="hdr reveal">
+        <p class="section-label">Ką mes kuriame</p>
+        <h2 class="section-title" style="color:var(--white)">Paslaugos</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="card reveal">
+          <div class="card-num">01</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+          <h3>Individualus dizainas</h3>
+          <p>Unikalus, prekės ženklui pritaikytas dizainas, sukurtas nuo nulio. Jokio Wix, jokių šablonų — tik meistriškumas.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-num">02</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+          <h3>El. parduotuvės</h3>
+          <p>Parduokite visoje Lietuvoje ir Europoje. Greitos, saugios parduotuvės su mokėjimo integracijomis, kuriomis pasitikite.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-num">03</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+          <h3>SEO ir našumas</h3>
+          <p>Sukurta aukštoms pozicijoms. Kiekviena svetainė kraunasi per mažiau nei 2 sekundes ir įvertinama 90+ Lighthouse.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-num">04</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg></div>
+          <h3>AI integracija</h3>
+          <p>Automatizuotas AI konsultantas, kuris atsako klientams 24/7, renka užklausas ir mažina jūsų darbo krūvį.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num" data-target="3">0</div>
+        <div class="stat-label">Baigti projektai</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">2–4</div>
+        <div class="stat-label">Sav. pristatymas</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num" data-target="90">0</div>
+        <div class="stat-label">Lighthouse balas</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Nuosavybė jums</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section id="why" class="why">
+    <div class="why-inner">
+      <div class="why-left reveal">
+        <p class="section-label">Kodėl Taškas.</p>
+        <h2 class="section-title">Sukurta Lietuvos verslams, ne didelėms korporacijoms.</h2>
+        <p>Dauguma agentūrų mažąjį verslą laiko antraeiliu dalyku. Taškas. sukurta specialiai Lietuvos verslininkams, parduotuvėms ir paslaugų teikėjams, kurie nori pasaulinio lygio rezultatų be korporatyvinių kainų.</p>
+        <a href="#waitlist" class="btn-dark">Prisijungti prie laukimo sąrašo →</a>
+      </div>
+      <div class="why-items reveal">
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div><h4>Lietuviškai ir angliškai</h4><p>Bendraujame jūsų kalba ir kuriame jūsų rinkai — ir padedame pasiekti tarptautinius klientus.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div><h4>Fiksuotos kainos paketai</h4><p>Jokių netikėtų sąskaitų. Žinote kainą prieš pradedant, ir pristatome laiku.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div><h4>Viską valdote jūs</h4><p>Visas kodas, ištekliai ir domenai yra jūsų nuo pirmos dienos. Jokio priklausymo nuo mūsų.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          <div><h4>BDAR įdiegtas iš karto</h4><p>Kiekviena svetainė pristatoma su tinkamu slapukų sutikimu, privatumo valdymu ir duomenų saugojimu ES.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="process">
+    <div class="hdr reveal">
+      <p class="section-label">Kaip dirbame</p>
+      <h2 class="section-title" style="color:var(--white)">Procesas</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h4>Pokalbis</h4>
+        <p>30 min. nemokamas skambutis. Išsiaiškiname jūsų tikslus, konkurentus ir lūkesčius.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h4>Dizainas</h4>
+        <p>Per 3 d.d. pateikiame pirminę koncepciją. Tobuliname kartu iki jums patinka 100%.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h4>Kūrimas</h4>
+        <p>Greitas, valytas kodas. Mobilusis pirmas, optimizuota kiekvienai naršyklei ir ekranui.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <h4>Paleidimas</h4>
+        <p>Pilnas testavimas, SEO bazė, SSL ir paleidimas. Jūs gaunate visas prisijungimo detales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <div class="hdr reveal">
+      <p class="section-label">Skaidrios kainos</p>
+      <h2 class="section-title" style="color:var(--white)">Kainos</h2>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="pricing-card reveal">
+        <p class="pricing-tier">Pradinis</p>
+        <h3 class="pricing-name">Starter</h3>
+        <p class="pricing-desc">Greitas, elegantiškas interneto vizitinės kortelės sprendimas smulkiam verslui.</p>
+        <div class="pricing-price"><sup>€</sup>499</div>
+        <p class="pricing-from">Vienkartinis mokėjimas</p>
+        <ul class="pricing-features">
+          <li>Iki 5 puslapių</li>
+          <li>Individualus dizainas</li>
+          <li>Mobilusis pirmas</li>
+          <li>Bazinis SEO</li>
+          <li>Kontaktų forma</li>
+          <li>SSL sertifikatas</li>
+          <li>2 savaičių pristatymas</li>
+          <li class="muted">Blogas / naujienos</li>
+          <li class="muted">AI integracija</li>
+        </ul>
+        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-pricing">Pradėti pokalbį</a>
+      </div>
+
+      <!-- PRO (featured) -->
+      <div class="pricing-card featured reveal">
+        <div class="pricing-popular">Populiariausias</div>
+        <p class="pricing-tier">Verslo</p>
+        <h3 class="pricing-name">Pro</h3>
+        <p class="pricing-desc">Visavertė verslo svetainė su pažangiu SEO ir konversijų optimizavimu.</p>
+        <div class="pricing-price"><sup>€</sup>999</div>
+        <p class="pricing-from">Vienkartinis mokėjimas</p>
+        <ul class="pricing-features">
+          <li>Iki 10 puslapių</li>
+          <li>Individualus dizainas</li>
+          <li>Mobilusis pirmas</li>
+          <li>Pažangus SEO</li>
+          <li>Blogas / naujienos</li>
+          <li>Google Analytics</li>
+          <li>3 pataisymo raundai</li>
+          <li>3 savaičių pristatymas</li>
+          <li class="muted">AI integracija</li>
+        </ul>
+        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-pricing">Pradėti pokalbį</a>
+      </div>
+
+      <!-- STORE -->
+      <div class="pricing-card reveal">
+        <p class="pricing-tier">El. prekyba</p>
+        <h3 class="pricing-name">Parduotuvė</h3>
+        <p class="pricing-desc">Pilna el. parduotuvė su mokėjimais, inventoriumi ir automatizavimu.</p>
+        <div class="pricing-price"><sup>€</sup>1999</div>
+        <p class="pricing-from">Nuo — priklauso nuo apimties</p>
+        <ul class="pricing-features">
+          <li>Neriboti produktai</li>
+          <li>Mokėjimo integracija</li>
+          <li>Inventoriaus valdymas</li>
+          <li>Užsakymų sistema</li>
+          <li>Pažangus SEO</li>
+          <li>Greičio optimizacija</li>
+          <li>4 savaičių pristatymas</li>
+          <li>3 mėn. palaikymas</li>
+          <li class="muted">AI integracija</li>
+        </ul>
+        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-pricing">Pradėti pokalbį</a>
+      </div>
+
+    </div>
+
+    <!-- AI ADD-ON -->
+    <div class="pricing-addon reveal">
+      <div class="pricing-addon-left">
+        <span class="addon-badge">✦ Priedas</span>
+        <div>
+          <h4>AI Konsultantas</h4>
+          <p>Automatizuotas AI, kuris atsako klientams 24/7, renka užklausas ir mažina jūsų darbo krūvį. Pridedamas prie bet kurio paketo.</p>
+        </div>
+      </div>
+      <div class="addon-price">+€299</div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="portfolio">
+    <div class="hdr reveal">
+      <p class="section-label">Mūsų darbai</p>
+      <h2 class="section-title" style="color:var(--white)">Projektai</h2>
+    </div>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card reveal">
+        <div class="dual-thumb">
+          <img src="Screenshot%202026-03-18%20at%2012.36.54.png" alt="MEBA svetainė" loading="lazy" />
+          <img src="Screenshot%202026-03-18%20at%2012.36.42.png" alt="MEBA su AI konsultantu" loading="lazy" />
+        </div>
+        <div class="portfolio-body">
+          <p class="portfolio-tag">Statybos įmonė</p>
+          <h3>MEBA <span class="feat-badge">✦ AI konsultantas</span></h3>
+          <p>Butų kapitalinis remontas Vilniuje — su integruotu AI konsultantu, kuris atsako klientams 24/7 ir generuoja užklausas automatiškai.</p>
+          <a href="https://meba.lt" target="_blank" rel="noopener" class="btn-portfolio">
+            Atidaryti svetainę
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <img class="portfolio-thumb" src="Screenshot%202026-03-18%20at%2012.37.12.png" alt="Lamur Studija svetainė" loading="lazy" />
+        <div class="portfolio-body">
+          <p class="portfolio-tag">Grožio studija</p>
+          <h3>Lamur Studija</h3>
+          <p>Grožio ir priežiūros studija Vilniuje — elegantiška, minimalistinė svetainė su online registracija ir paslaugų galerija.</p>
+          <a href="https://lamurstudija.lt" target="_blank" rel="noopener" class="btn-portfolio">
+            Atidaryti svetainę
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section id="waitlist" class="waitlist">
+    <div class="waitlist-inner">
+      <p class="section-label">Pradėkime</p>
+      <h2 class="section-title" style="margin-bottom:1rem">Pasiruošę augti?</h2>
+      <p>Užsiregistruokite į nemokamą 30 min. pokalbį — aptarsime jūsų projektą ir parengsime individualų pasiūlymą. Arba palikite el. paštą ir susisieksime patys.</p>
+
+      <!-- CALENDLY CTA -->
+      <div style="margin-bottom:2rem">
+        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;"
+           class="btn-primary" style="display:inline-block;margin-bottom:1rem">
+          📅 Rezervuoti nemokamą skambutį
+        </a>
+        <p style="font-size:0.78rem;color:var(--gray-mid)">arba palikite el. paštą žemiau</p>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--black-3);margin-bottom:2rem">
+
+      <form id="waitlist-form" class="form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="field-name">Jūsų vardas</label>
+            <input id="field-name" type="text" placeholder="Jonas Jonaitis" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="field-type">Verslo tipas</label>
+            <select id="field-type">
+              <option value="">Pasirinkite...</option>
+              <option value="retail">Mažmeninė prekyba / Parduotuvė</option>
+              <option value="restaurant">Restoranas / Kavinė</option>
+              <option value="services">Profesionalios paslaugos</option>
+              <option value="startup">Startuolis</option>
+              <option value="other">Kita</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="field-email">El. pašto adresas <span style="color:var(--orange)">*</span></label>
+          <input id="field-email" type="email" placeholder="jonas@imone.lt" autocomplete="email" required />
+        </div>
+        <button type="submit" id="submit-btn" class="btn-submit">
+          Prisijungti prie laukimo sąrašo — Nemokamai
+        </button>
+        <p id="error-msg" class="error-msg"></p>
+      </form>
+
+      <div id="success-box" class="success-box">
+        <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+        <h3>Esate sąraše!</h3>
+        <p>Netrukus susisieksime su jūsų ankstyvojo priėjimo pakvitimu ir nuolaidos kodu.</p>
+      </div>
+
+      <p class="form-note">Jokio šlamšto. Atsisakykite bet kada. Jūsų duomenys saugiai saugomi ES.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">Taškas<span>.</span></span>
+        <span>·</span>
+        <span>Svetainių kūrimo studija</span>
+        <span>·</span>
+        <span>Vilnius, Lietuva 🇱🇹</span>
+      </div>
+      <div>© 2026 Taškas. Visos teisės saugomos.</div>
+    </div>
+  </footer>
+
+  <!-- CALENDLY -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    /* ── CURSOR ── */
+    const cur  = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+    (function loop() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { cur.style.width = '18px'; cur.style.height = '18px'; ring.style.width = '50px'; ring.style.height = '50px'; });
+      el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; });
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── COUNT UP ── */
+    function countUp(el, target, duration) {
+      let start = 0, step = target / (duration / 16);
+      const t = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.floor(start) + (el.dataset.suffix || '');
+        if (start >= target) clearInterval(t);
+      }, 16);
+    }
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.target);
+          if (!isNaN(target)) countUp(el, target, 1200);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-target]').forEach(el => countObserver.observe(el));
+
+    /* ── WAITLIST FORM ── */
+    const db = supabase.createClient(
+      'https://tgoyomqhphckbkxfgrfm.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnb3lvbXFocGhja2JreGZncmZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4MTc2NzcsImV4cCI6MjA4OTM5MzY3N30.bW4XDmwaSC-WGEd8gCS_TFnOwNUNnnsihh9QdMFUjHQ'
+    );
+    const form       = document.getElementById('waitlist-form');
+    const successBox = document.getElementById('success-box');
+    const errorMsg   = document.getElementById('error-msg');
+    const submitBtn  = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = document.getElementById('field-email').value.trim();
+      const name  = document.getElementById('field-name').value.trim();
+      const type  = document.getElementById('field-type').value;
+      if (!email) { showErr('Prašome įvesti el. pašto adresą.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Prašome įvesti teisingą el. pašto adresą.'); return; }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Prisijungiama…';
+      errorMsg.classList.remove('show');
+      const { error } = await db.from('waitlist').insert({ email, name: name || null, business_type: type || null });
+      if (error) {
+        showErr(error.code === '23505' ? 'Šis el. paštas jau yra sąraše!' : 'Kažkas nutiko. Bandykite dar kartą.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Prisijungti prie laukimo sąrašo — Nemokamai';
+        return;
+      }
+      form.style.display = 'none';
+      successBox.classList.add('show');
+    });
+    function showErr(msg) { errorMsg.textContent = msg; errorMsg.classList.add('show'); }
+  </script>
+</body>
+</html>
