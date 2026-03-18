@@ -486,7 +486,7 @@
         <li><a href="#portfolio">Darbai</a></li>
         <li><a href="#waitlist">Registruotis</a></li>
       </ul>
-      <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-nav">Nemokamas skambutis</a>
+      <a href="#" onclick="openBooking();return false;" class="btn-nav">Nemokamas skambutis</a>
     </div>
   </nav>
 
@@ -686,7 +686,7 @@
           <li class="muted">Blogas / naujienos</li>
           <li class="muted">AI integracija</li>
         </ul>
-        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-pricing">Pradėti pokalbį</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti pokalbį</a>
       </div>
 
       <!-- PRO (featured) -->
@@ -708,7 +708,7 @@
           <li>3 savaičių pristatymas</li>
           <li class="muted">AI integracija</li>
         </ul>
-        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-pricing">Pradėti pokalbį</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti pokalbį</a>
       </div>
 
       <!-- STORE -->
@@ -729,7 +729,7 @@
           <li>3 mėn. palaikymas</li>
           <li class="muted">AI integracija</li>
         </ul>
-        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;" class="btn-pricing">Pradėti pokalbį</a>
+        <a href="#" onclick="openBooking();return false;" class="btn-pricing">Pradėti pokalbį</a>
       </div>
 
     </div>
@@ -794,9 +794,9 @@
       <h2 class="section-title" style="margin-bottom:1rem">Pasiruošę augti?</h2>
       <p>Užsiregistruokite į nemokamą 30 min. pokalbį — aptarsime jūsų projektą ir parengsime individualų pasiūlymą. Arba palikite el. paštą ir susisieksime patys.</p>
 
-      <!-- CALENDLY CTA -->
+      <!-- BOOKING CTA -->
       <div style="margin-bottom:2rem">
-        <a href="#" onclick="Calendly.initPopupWidget({url:'https://calendly.com/taskas/30min'});return false;"
+        <a href="#" onclick="openBooking();return false;"
            class="btn-primary" style="display:inline-block;margin-bottom:1rem">
           📅 Rezervuoti nemokamą skambutį
         </a>
@@ -857,9 +857,118 @@
     </div>
   </footer>
 
-  <!-- CALENDLY -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <!-- BOOKING MODAL -->
+  <div id="booking-overlay" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);overflow-y:auto;padding:2rem 1rem">
+    <div id="booking-modal" style="max-width:560px;margin:2rem auto;background:#0d0d0d;border:1px solid #262626;border-radius:8px;overflow:hidden">
+
+      <!-- Header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;border-bottom:1px solid #262626">
+        <div>
+          <p style="color:#FF5500;font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.3rem">Nemokamas pokalbis</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800">Rezervuoti 30 min. skambutį</h3>
+        </div>
+        <button onclick="closeBooking()" style="background:none;border:1px solid #262626;color:#a0a0a0;width:36px;height:36px;border-radius:50%;cursor:none;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s,color 0.2s" onmouseenter="this.style.borderColor='#FF5500';this.style.color='#FF5500'" onmouseleave="this.style.borderColor='#262626';this.style.color='#a0a0a0'">✕</button>
+      </div>
+
+      <!-- Step indicators -->
+      <div style="display:flex;border-bottom:1px solid #262626">
+        <div id="si-1" style="flex:1;padding:0.85rem;text-align:center;font-size:0.75rem;font-weight:700;color:#FF5500;border-bottom:2px solid #FF5500">1. Data</div>
+        <div id="si-2" style="flex:1;padding:0.85rem;text-align:center;font-size:0.75rem;font-weight:700;color:#6b6b6b;border-bottom:2px solid transparent">2. Laikas</div>
+        <div id="si-3" style="flex:1;padding:0.85rem;text-align:center;font-size:0.75rem;font-weight:700;color:#6b6b6b;border-bottom:2px solid transparent">3. Kontaktai</div>
+      </div>
+
+      <!-- Step 1: Calendar -->
+      <div id="step-1" style="padding:1.75rem 2rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem">
+          <button onclick="prevMonth()" style="background:none;border:1px solid #262626;color:#a0a0a0;width:32px;height:32px;border-radius:4px;cursor:none;font-size:1rem" onmouseenter="this.style.borderColor='#FF5500';this.style.color='#FF5500'" onmouseleave="this.style.borderColor='#262626';this.style.color='#a0a0a0'">‹</button>
+          <span id="cal-title" style="font-weight:700;font-size:0.95rem"></span>
+          <button onclick="nextMonth()" style="background:none;border:1px solid #262626;color:#a0a0a0;width:32px;height:32px;border-radius:4px;cursor:none;font-size:1rem" onmouseenter="this.style.borderColor='#FF5500';this.style.color='#FF5500'" onmouseleave="this.style.borderColor='#262626';this.style.color='#a0a0a0'">›</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;margin-bottom:0.5rem">
+          <div style="font-size:0.7rem;font-weight:700;color:#6b6b6b;padding:0.4rem">Pr</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#6b6b6b;padding:0.4rem">An</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#6b6b6b;padding:0.4rem">Tr</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#6b6b6b;padding:0.4rem">Kt</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#6b6b6b;padding:0.4rem">Pn</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#404040;padding:0.4rem">Š</div>
+          <div style="font-size:0.7rem;font-weight:700;color:#404040;padding:0.4rem">S</div>
+        </div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center"></div>
+      </div>
+
+      <!-- Step 2: Time slots -->
+      <div id="step-2" style="display:none;padding:1.75rem 2rem">
+        <p style="font-size:0.82rem;color:#a0a0a0;margin-bottom:1.25rem">Pasirinkite laiką: <strong id="chosen-date-label" style="color:#fff"></strong></p>
+        <div id="time-slots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem"></div>
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem">
+          <button onclick="goStep(1)" style="flex:1;background:none;border:1px solid #262626;color:#a0a0a0;padding:0.75rem;border-radius:3px;cursor:none;font-family:inherit;font-size:0.88rem" onmouseenter="this.style.borderColor='#FF5500'" onmouseleave="this.style.borderColor='#262626'">← Atgal</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Contact form -->
+      <div id="step-3" style="display:none;padding:1.75rem 2rem">
+        <p style="font-size:0.82rem;color:#a0a0a0;margin-bottom:1.5rem">
+          <strong id="booking-summary" style="color:#FF5500"></strong>
+        </p>
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <div style="display:flex;flex-direction:column;gap:0.4rem">
+            <label style="font-size:0.8rem;font-weight:600;color:#a0a0a0">Vardas *</label>
+            <input id="b-name" type="text" placeholder="Jonas Jonaitis" style="background:#1a1a1a;border:1px solid #262626;color:#fff;padding:0.8rem 1rem;border-radius:3px;font-family:inherit;font-size:0.9rem;transition:border-color 0.2s" onfocus="this.style.borderColor='#FF5500'" onblur="this.style.borderColor='#262626'"/>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.4rem">
+            <label style="font-size:0.8rem;font-weight:600;color:#a0a0a0">El. paštas *</label>
+            <input id="b-email" type="email" placeholder="jonas@imone.lt" style="background:#1a1a1a;border:1px solid #262626;color:#fff;padding:0.8rem 1rem;border-radius:3px;font-family:inherit;font-size:0.9rem;transition:border-color 0.2s" onfocus="this.style.borderColor='#FF5500'" onblur="this.style.borderColor='#262626'"/>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.4rem">
+            <label style="font-size:0.8rem;font-weight:600;color:#a0a0a0">Apie projektą</label>
+            <textarea id="b-msg" placeholder="Trumpai apie jūsų verslą ir ko norite iš svetainės..." rows="3" style="background:#1a1a1a;border:1px solid #262626;color:#fff;padding:0.8rem 1rem;border-radius:3px;font-family:inherit;font-size:0.9rem;resize:vertical;transition:border-color 0.2s" onfocus="this.style.borderColor='#FF5500'" onblur="this.style.borderColor='#262626'"></textarea>
+          </div>
+          <p id="b-error" style="display:none;color:#ff7070;font-size:0.82rem"></p>
+          <div style="display:flex;gap:0.75rem">
+            <button onclick="goStep(2)" style="flex:1;background:none;border:1px solid #262626;color:#a0a0a0;padding:0.85rem;border-radius:3px;cursor:none;font-family:inherit;font-size:0.88rem" onmouseenter="this.style.borderColor='#FF5500'" onmouseleave="this.style.borderColor='#262626'">← Atgal</button>
+            <button onclick="submitBooking()" id="b-submit" style="flex:2;background:#FF5500;color:#000;font-weight:800;font-size:0.95rem;padding:0.85rem;border:none;border-radius:3px;cursor:none;font-family:inherit;box-shadow:0 0 24px rgba(255,85,0,0.3);transition:background 0.2s" onmouseenter="this.style.background='#FF7722'" onmouseleave="this.style.background='#FF5500'">Patvirtinti rezervaciją</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Success -->
+      <div id="step-4" style="display:none;padding:3rem 2rem;text-align:center">
+        <div style="width:60px;height:60px;background:rgba(255,85,0,0.1);border:1px solid #FF5500;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF5500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:800;margin-bottom:0.75rem">Rezervacija patvirtinta!</h3>
+        <p id="booking-confirm-text" style="color:#a0a0a0;font-size:0.92rem;line-height:1.7"></p>
+        <button onclick="closeBooking()" style="margin-top:2rem;background:#FF5500;color:#000;font-weight:800;padding:0.85rem 2rem;border:none;border-radius:3px;cursor:none;font-family:inherit;font-size:0.9rem">Uždaryti</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMAILJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    /*
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    EMAIL SETUP (one-time, ~5 min):
+    1. Go to https://emailjs.com → sign up free
+    2. Email Services → Add Service → Gmail → connect your Gmail
+    3. Email Templates → Create Template (×2):
+       • "booking_notify" — template to YOU when someone books:
+           Subject: Nauja rezervacija – {{booking_date}} {{booking_time}}
+           Body: Vardas: {{client_name}}\nEl. paštas: {{client_email}}\nData: {{booking_date}}\nLaikas: {{booking_time}}\nŽinutė: {{message}}
+       • "waitlist_notify" — template to YOU when someone joins waitlist:
+           Subject: Naujas laukimo sąrašo narys – {{client_name}}
+           Body: Vardas: {{client_name}}\nEl. paštas: {{client_email}}\nVerslas: {{business_type}}
+    4. Account → API Keys → copy Public Key
+    5. Fill in the 4 values below:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    */
+    const EJS_PUBLIC_KEY      = 'YOUR_PUBLIC_KEY';       // Account → API Keys
+    const EJS_SERVICE_ID      = 'YOUR_SERVICE_ID';       // Email Services → Service ID
+    const EJS_BOOKING_TPL     = 'booking_notify';        // your booking template ID
+    const EJS_WAITLIST_TPL    = 'waitlist_notify';       // your waitlist template ID
+    emailjs.init(EJS_PUBLIC_KEY);
+  </script>
 
   <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -935,10 +1044,160 @@
         submitBtn.textContent = 'Prisijungti prie laukimo sąrašo — Nemokamai';
         return;
       }
+      // Fire email notification
+      form.dispatchEvent(new CustomEvent('taskas:notify', { detail: { name, email, type } }));
       form.style.display = 'none';
       successBox.classList.add('show');
     });
     function showErr(msg) { errorMsg.textContent = msg; errorMsg.classList.add('show'); }
+
+    // ── WAITLIST → also email notify ──
+    const _origSubmit = form.onsubmit;
+    form.addEventListener('submit', async e => {
+      // email notify fires after successful insert (handled below by patching)
+    });
+    // Patch: after successful waitlist insert, fire EmailJS
+    const origListener = form._wlListener;
+    form.addEventListener('taskas:waitlist-ok', e => {
+      emailjs.send(EJS_SERVICE_ID, EJS_WAITLIST_TPL, {
+        client_name:   e.detail.name || '(nenurodyta)',
+        client_email:  e.detail.email,
+        business_type: e.detail.type || '(nenurodyta)',
+      }).catch(() => {}); // silent — don't block UX
+    });
+
+    // ── BOOKING MODAL ──
+    let calYear, calMonth, selectedDate = null, selectedTime = null;
+    const MONTHS_LT = ['Sausis','Vasaris','Kovas','Balandis','Gegužė','Birželis','Liepa','Rugpjūtis','Rugsėjis','Spalis','Lapkritis','Gruodis'];
+    const TIMES = ['9:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
+
+    function openBooking() {
+      const now = new Date();
+      calYear = now.getFullYear(); calMonth = now.getMonth();
+      selectedDate = null; selectedTime = null;
+      renderCal();
+      goStep(1);
+      document.getElementById('booking-overlay').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBooking() {
+      document.getElementById('booking-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.getElementById('booking-overlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('booking-overlay')) closeBooking();
+    });
+
+    function goStep(n) {
+      [1,2,3,4].forEach(i => {
+        document.getElementById('step-'+i).style.display = i === n ? 'block' : 'none';
+        const si = document.getElementById('si-'+i);
+        if (si) { si.style.color = i === n ? '#FF5500' : '#6b6b6b'; si.style.borderBottomColor = i === n ? '#FF5500' : 'transparent'; }
+      });
+    }
+
+    function renderCal() {
+      document.getElementById('cal-title').textContent = MONTHS_LT[calMonth] + ' ' + calYear;
+      const grid = document.getElementById('cal-grid');
+      grid.innerHTML = '';
+      const today = new Date(); today.setHours(0,0,0,0);
+      const first = new Date(calYear, calMonth, 1);
+      // Monday-based offset (0=Mon … 6=Sun)
+      let offset = (first.getDay() + 6) % 7;
+      for (let i = 0; i < offset; i++) {
+        const blank = document.createElement('div'); grid.appendChild(blank);
+      }
+      const days = new Date(calYear, calMonth+1, 0).getDate();
+      for (let d = 1; d <= days; d++) {
+        const btn = document.createElement('button');
+        const date = new Date(calYear, calMonth, d);
+        const dow = date.getDay(); // 0=Sun,6=Sat
+        const isPast = date < today;
+        const isWknd = dow === 0 || dow === 6;
+        const dateStr = date.toISOString().slice(0,10);
+        btn.textContent = d;
+        btn.style.cssText = 'padding:0.55rem 0;border-radius:4px;font-family:inherit;font-size:0.85rem;font-weight:600;transition:background 0.15s,color 0.15s,border-color 0.15s;cursor:none;';
+        if (isPast || isWknd) {
+          btn.style.background = 'none'; btn.style.border = 'none'; btn.style.color = '#404040'; btn.disabled = true;
+        } else {
+          btn.style.background = selectedDate === dateStr ? '#FF5500' : 'none';
+          btn.style.border = '1px solid ' + (selectedDate === dateStr ? '#FF5500' : '#262626');
+          btn.style.color = selectedDate === dateStr ? '#000' : '#fff';
+          btn.addEventListener('click', () => pickDate(dateStr, btn));
+        }
+        grid.appendChild(btn);
+      }
+    }
+
+    function pickDate(dateStr, btn) {
+      selectedDate = dateStr;
+      renderCal();
+      // render time slots
+      const slots = document.getElementById('time-slots');
+      slots.innerHTML = '';
+      const [y,m,d] = dateStr.split('-');
+      const months = ['sausio','vasario','kovo','balandžio','gegužės','birželio','liepos','rugpjūčio','rugsėjo','spalio','lapkričio','gruodžio'];
+      document.getElementById('chosen-date-label').textContent = d + ' ' + months[parseInt(m)-1] + ' ' + y;
+      TIMES.forEach(t => {
+        const b = document.createElement('button');
+        b.textContent = t;
+        b.style.cssText = 'padding:0.65rem;border:1px solid #262626;background:none;color:#fff;border-radius:3px;font-family:inherit;font-size:0.88rem;font-weight:600;cursor:none;transition:all 0.15s';
+        b.addEventListener('click', () => {
+          selectedTime = t;
+          document.querySelectorAll('#time-slots button').forEach(x => { x.style.background='none'; x.style.color='#fff'; x.style.borderColor='#262626'; });
+          b.style.background = '#FF5500'; b.style.color = '#000'; b.style.borderColor = '#FF5500';
+          setTimeout(() => goStep(3), 250);
+          const [y2,m2,d2] = dateStr.split('-');
+          document.getElementById('booking-summary').textContent = d2 + ' ' + months[parseInt(m2)-1] + ' ' + y2 + ', ' + t;
+        });
+        slots.appendChild(b);
+      });
+      goStep(2);
+    }
+
+    function prevMonth() { calMonth--; if (calMonth < 0) { calMonth=11; calYear--; } renderCal(); }
+    function nextMonth() { calMonth++; if (calMonth > 11) { calMonth=0; calYear++; } renderCal(); }
+
+    async function submitBooking() {
+      const name  = document.getElementById('b-name').value.trim();
+      const email = document.getElementById('b-email').value.trim();
+      const msg   = document.getElementById('b-msg').value.trim();
+      const bErr  = document.getElementById('b-error');
+      if (!name)  { bErr.textContent='Prašome įvesti vardą.'; bErr.style.display='block'; return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { bErr.textContent='Prašome įvesti teisingą el. paštą.'; bErr.style.display='block'; return; }
+      bErr.style.display = 'none';
+      const btn = document.getElementById('b-submit');
+      btn.textContent = 'Saugoma…'; btn.disabled = true;
+
+      // Save to Supabase
+      const { error } = await db.from('bookings').insert({ name, email, date: selectedDate, time: selectedTime, message: msg || null });
+      if (error) { bErr.textContent = 'Klaida. Bandykite dar kartą.'; bErr.style.display='block'; btn.textContent='Patvirtinti rezervaciją'; btn.disabled=false; return; }
+
+      // Email notify to owner via EmailJS
+      emailjs.send(EJS_SERVICE_ID, EJS_BOOKING_TPL, {
+        client_name:  name,
+        client_email: email,
+        booking_date: selectedDate,
+        booking_time: selectedTime,
+        message:      msg || '—',
+      }).catch(() => {});
+
+      // Show success
+      document.getElementById('booking-confirm-text').innerHTML =
+        'Rezervacija išsaugota <strong>' + selectedDate + '</strong> ' + selectedTime + '.<br>Susisieksime su jumis el. paštu <strong>' + email + '</strong> prieš skambutį.';
+      goStep(4);
+    }
+
+    // ── PATCH waitlist to fire email event ──
+    const origForm = document.getElementById('waitlist-form');
+    const origBtn  = document.getElementById('submit-btn');
+    origForm.addEventListener('taskas:notify', e => {
+      emailjs.send(EJS_SERVICE_ID, EJS_WAITLIST_TPL, {
+        client_name:   e.detail.name || '—',
+        client_email:  e.detail.email,
+        business_type: e.detail.type || '—',
+      }).catch(() => {});
+    });
   </script>
 </body>
 </html>
