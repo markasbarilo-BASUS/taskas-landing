@@ -26,7 +26,10 @@
   <meta name="twitter:image" content="https://taškas.lt/og-image.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" /></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -43,8 +46,8 @@
       --white:       #ffffff;
     }
 
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; cursor: none; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--black); color: var(--white); -webkit-font-smoothing: antialiased; cursor: none; }
 
     /* ── CUSTOM CURSOR ── */
     #cursor {
@@ -206,7 +209,7 @@
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
 
     /* ── SERVICES ── */
-    .services { background: var(--black-1); padding: 6rem 2rem; }
+    .services { background: var(--black-1); padding: 6rem 2rem; content-visibility: auto; contain-intrinsic-size: auto 600px; }
     .services .hdr { text-align: center; margin-bottom: 3.5rem; }
     .cards-grid {
       max-width: 1200px; margin: 0 auto;
@@ -304,7 +307,7 @@
     .step p { font-size: 0.82rem; color: var(--gray-mid); line-height: 1.65; }
 
     /* ── PORTFOLIO ── */
-    .portfolio { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 6rem 2rem; }
+    .portfolio { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 6rem 2rem; content-visibility: auto; contain-intrinsic-size: auto 800px; }
     .portfolio .hdr { text-align: center; margin-bottom: 3.5rem; }
     .portfolio-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .portfolio-card { border: 1px solid var(--black-3); border-radius: 6px; overflow: hidden; background: var(--black); transition: border-color 0.25s; }
@@ -366,7 +369,7 @@
     .form-note { color: var(--gray); font-size: 0.73rem; text-align: center; margin-top: 1.2rem; }
 
     /* ── PRICING ── */
-    .pricing { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 6rem 2rem; }
+    .pricing { background: var(--black-1); border-top: 1px solid var(--black-3); padding: 6rem 2rem; content-visibility: auto; contain-intrinsic-size: auto 1200px; }
     .pricing .hdr { text-align: center; margin-bottom: 3.5rem; }
     .pricing-grid {
       max-width: 1200px; margin: 0 auto;
@@ -601,8 +604,8 @@
     }
 
     /* ── FADE IN ON SCROLL ── */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; will-change: opacity, transform; }
+    .reveal.visible { opacity: 1; transform: translateY(0); will-change: auto; }
 
     /* ── HERO ANIMS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
@@ -1251,8 +1254,8 @@
 
       <div class="portfolio-card reveal">
         <div class="dual-thumb">
-          <img src="Screenshot%202026-03-18%20at%2012.36.54.png" alt="MEBA svetainė" loading="lazy" />
-          <img src="Screenshot%202026-03-18%20at%2012.36.42.png" alt="MEBA su AI konsultantu" loading="lazy" />
+          <img src="portfolio-meba.jpg" alt="MEBA svetainė" loading="lazy" width="580" height="326" decoding="async" />
+          <img src="portfolio-meba-ai.jpg" alt="MEBA su AI konsultantu" loading="lazy" width="580" height="326" decoding="async" />
         </div>
         <div class="portfolio-body">
           <p class="portfolio-tag">Statybos įmonė</p>
@@ -1266,7 +1269,7 @@
       </div>
 
       <div class="portfolio-card reveal">
-        <img class="portfolio-thumb" src="Screenshot%202026-03-18%20at%2012.37.12.png" alt="Lamur Studija svetainė" loading="lazy" />
+        <img class="portfolio-thumb" src="portfolio-lamur.jpg" alt="Lamur Studija svetainė" loading="lazy" width="1160" height="653" decoding="async" />
         <div class="portfolio-body">
           <p class="portfolio-tag">Grožio studija</p>
           <h3>Lamur Studija</h3>
@@ -1526,51 +1529,44 @@
     </a>
   </div>
 
-  <!-- EMAILJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- EMAILJS + SUPABASE: lazy-loaded on first interaction for perf -->
   <script>
-    /*
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    EMAIL SETUP (one-time, ~5 min):
-    1. Go to https://emailjs.com → sign up free
-    2. Email Services → Add Service → Gmail → connect your Gmail
-    3. Email Templates → Create Template (×2):
-       • "booking_notify" — template to YOU when someone books:
-           Subject: Nauja rezervacija – {{booking_date}} {{booking_time}}
-           Body: Vardas: {{client_name}}\nEl. paštas: {{client_email}}\nData: {{booking_date}}\nLaikas: {{booking_time}}\nŽinutė: {{message}}
-       • "waitlist_notify" — template to YOU when someone joins waitlist:
-           Subject: Naujas laukimo sąrašo narys – {{client_name}}
-           Body: Vardas: {{client_name}}\nEl. paštas: {{client_email}}\nVerslas: {{business_type}}
-    4. Account → API Keys → copy Public Key
-    5. Fill in the 4 values below:
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    */
     const EJS_PUBLIC_KEY      = 'ySk-AO-xmPZlNcZpm';
     const EJS_SERVICE_ID      = 'service_19opfxf';
-    const EJS_BOOKING_TPL     = 'booking_notify';        // your booking template ID
-    const EJS_WAITLIST_TPL    = 'waitlist_notify';       // your waitlist template ID
-    emailjs.init(EJS_PUBLIC_KEY);
-  </script>
+    const EJS_BOOKING_TPL     = 'booking_notify';
+    const EJS_WAITLIST_TPL    = 'waitlist_notify';
 
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    let _libsLoaded = false;
+    function loadLibs() {
+      if (_libsLoaded) return Promise.resolve();
+      _libsLoaded = true;
+      return Promise.all([
+        new Promise(r => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'; s.onload = () => { emailjs.init(EJS_PUBLIC_KEY); r(); }; document.head.appendChild(s); }),
+        new Promise(r => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'; s.onload = r; document.head.appendChild(s); })
+      ]);
+    }
+    // Preload on first user interaction (scroll, click, touch)
+    ['scroll','click','touchstart'].forEach(e => window.addEventListener(e, () => loadLibs(), { once: true, passive: true }));
+  </script>
   <script>
-    /* ── CURSOR ── */
-    const cur  = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
-    (function loop() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(loop);
-    })();
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { cur.style.width = '18px'; cur.style.height = '18px'; ring.style.width = '50px'; ring.style.height = '50px'; });
-      el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; });
-    });
+    /* ── CURSOR (desktop only) ── */
+    if (window.innerWidth > 640) {
+      const cur  = document.getElementById('cursor');
+      const ring = document.getElementById('cursor-ring');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+      (function loop() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(loop);
+      })();
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cur.style.width = '18px'; cur.style.height = '18px'; ring.style.width = '50px'; ring.style.height = '50px'; });
+        el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; ring.style.width = '36px'; ring.style.height = '36px'; });
+      });
+    }
 
     /* ── SCROLL REVEAL ── */
     const observer = new IntersectionObserver(entries => {
@@ -1600,10 +1596,17 @@
     document.querySelectorAll('[data-target]').forEach(el => countObserver.observe(el));
 
     /* ── WAITLIST FORM ── */
-    const db = supabase.createClient(
-      'https://tgoyomqhphckbkxfgrfm.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnb3lvbXFocGhja2JreGZncmZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4MTc2NzcsImV4cCI6MjA4OTM5MzY3N30.bW4XDmwaSC-WGEd8gCS_TFnOwNUNnnsihh9QdMFUjHQ'
-    );
+    let db = null;
+    function getDb() {
+      if (db) return db;
+      if (typeof supabase !== 'undefined') {
+        db = supabase.createClient(
+          'https://tgoyomqhphckbkxfgrfm.supabase.co',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnb3lvbXFocGhja2JreGZncmZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4MTc2NzcsImV4cCI6MjA4OTM5MzY3N30.bW4XDmwaSC-WGEd8gCS_TFnOwNUNnnsihh9QdMFUjHQ'
+        );
+      }
+      return db;
+    }
     const form       = document.getElementById('waitlist-form');
     const successBox = document.getElementById('success-box');
     const errorMsg   = document.getElementById('error-msg');
@@ -1619,7 +1622,8 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Prisijungiama…';
       errorMsg.classList.remove('show');
-      const { error } = await db.from('waitlist').insert({ email, name: name || null, business_type: type || null });
+      await loadLibs();
+      const { error } = await getDb().from('waitlist').insert({ email, name: name || null, business_type: type || null });
       if (error) {
         showErr(error.code === '23505' ? 'Šis el. paštas jau yra sąraše!' : 'Kažkas nutiko. Bandykite dar kartą.');
         submitBtn.disabled = false;
@@ -1762,7 +1766,8 @@
       btn.textContent = 'Saugoma…'; btn.disabled = true;
 
       // Save to Supabase
-      const { error } = await db.from('bookings').insert({ name, email, date: selectedDate, time: selectedTime, message: msg || null });
+      await loadLibs();
+      const { error } = await getDb().from('bookings').insert({ name, email, date: selectedDate, time: selectedTime, message: msg || null });
       if (error) { bErr.textContent = 'Klaida. Bandykite dar kartą.'; bErr.style.display='block'; btn.textContent='Patvirtinti rezervaciją'; btn.disabled=false; return; }
 
       // Email notify to owner via EmailJS
